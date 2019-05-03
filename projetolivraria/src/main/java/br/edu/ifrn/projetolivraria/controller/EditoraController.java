@@ -67,9 +67,9 @@ public class EditoraController {
 		return findAll();
     }
 
-	@GetMapping("/lista")
+	@GetMapping("/listar")
 	private ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView("editora/lista");
+		ModelAndView mv = new ModelAndView("editora/listar");
         mv.addObject("editoras", editoraService.listaAll());
         
         return mv;

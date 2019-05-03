@@ -23,6 +23,10 @@ public class Editora implements Serializable{
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
 	
+	@Column(nullable = false, length = 100)
+	@NotBlank(message = "Cidade é uma informação obrigatória.")
+	private String cidade;
+	
 	
 	public Long getId() {
 		return id;
@@ -38,6 +42,14 @@ public class Editora implements Serializable{
 	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getCidade() {
+		return cidade;
+	}
+	
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 	
 	public static long getSerialversionuid() {

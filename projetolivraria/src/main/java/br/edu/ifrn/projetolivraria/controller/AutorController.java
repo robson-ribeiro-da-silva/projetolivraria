@@ -23,10 +23,10 @@ public class AutorController {
 	@Autowired
 	private AutorService service;
 	
-	@GetMapping("/")
+	@GetMapping("/listar")
 	public ModelAndView findAll() {
 		
-		ModelAndView mv = new ModelAndView("/autor");
+		ModelAndView mv = new ModelAndView("autor/listar");
 		mv.addObject("autors", service.findAll());
 		
 		return mv;

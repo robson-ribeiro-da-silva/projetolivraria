@@ -5,19 +5,18 @@
 </head>
 
 <body>
-<div th:fragment="menu-esquerdo">
-		<ul 
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+
+	<div th:fragment="menu-esquerdo">
+		<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Menu esquerdo -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="#">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center"
+				th:href="@{/}">
 				<div>
 					<i class="fas fa-fw fa-book"></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">LIVRARIA</div>
+				</div>				
+				<div class="sidebar-brand-text mx-3">LIVRARIA</div>				
 			</a>
 
 			<!-- Divider -->
@@ -25,7 +24,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="#"> <i class="fas fa-fw fa-user"></i> <span>Nome do Usuário</span>
+				href="#"> <i class="fas fa-fw fa-user"></i> <span>Robson Silva</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -37,31 +36,33 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="false" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-clipboard"></i> <span>Cadastrar</span>
-			</a>
+					class="fas fa-fw fa-clipboard"></i> <span>Cadastrar</span></a>
+					
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="#">Autor</a>
+						<a class="collapse-item" th:href="@{/autor/add}">Autor</a>
 						<a class="collapse-item" th:href="@{/categoria/add}">Categoria</a>
-						<a class="collapse-item" href="#">Editora</a>
+						<a class="collapse-item" th:href="@{/editora/add}">Editora</a>
 					</div>
-				</div></li>
+				</div>
+			</li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities"
 				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-search"></i> <span>Consultar</span>
-			</a>
+					class="fas fa-fw fa-search"></i> <span>Consultar</span></a>
+					
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="#">Autor</a>
-						<a class="collapse-item" href="#">Categoria</a>
-						<a class="collapse-item" href="#">Editora</a>
+						<a class="collapse-item" th:href="@{/autor/listar}">Autor</a>
+						<a class="collapse-item" th:href="@{/categoria/listar}">Categoria</a>
+						<a class="collapse-item" th:href="@{/editora/listar}">Editora</a>
 					</div>
-				</div></li>
+				</div>
+			</li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">

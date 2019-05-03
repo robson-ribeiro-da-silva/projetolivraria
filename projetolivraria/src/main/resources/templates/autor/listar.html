@@ -1,11 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{'/layouts/layout'}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8" />
 </head>
 <body>
-<h1>lista autor</h1>
 
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			<strong>Autores</strong>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-sm table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nome</th>
+									<th>Cpf</th>
+									<th>Email</th>
+									<th>Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="autor : ${autors}">
+									<td th:text="${autor.id}"></td>
+									<td th:text="${autor.nome}"></td>
+									<td th:text="${autor.cpf}"></td>
+									<td th:text="${autor.email}"></td>
+									<td>
+										<div class="btn-group pull-right">
+									   		<a class="btn btn-sm btn-primary" th:href="@{/autor/edit/{id}(id=${autor.id})}" >Editar</a>
+									   		<a class="delete btn btn-sm btn-danger" th:href="@{/autor/delete/{id}(id=${autor.id})}">Excluir</a>
+									   </div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<a class="btn btn-sm btn-success" th:href="@{/autor/add}" >Adicionar Novo</a>
+				</div>
+
+			</div>
+		</div>
+	
 </body>
 </html>

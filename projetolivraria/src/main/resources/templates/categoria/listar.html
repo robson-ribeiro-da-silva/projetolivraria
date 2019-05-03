@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{'/layouts/layout'}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8" />
 </head>
 <body>
-<h1>lista categoria</h1>
 
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			<strong>Categorias</strong>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-sm table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nome</th>
+									<th>Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="categoria : ${categorias}">
+									<td th:text="${categoria.id}"></td>
+									<td th:text="${categoria.nome}"></td>
+									<td>
+										<div class="btn-group pull-right">
+									   		<a class="btn btn-sm btn-primary" th:href="@{/categoria/edit/{id}(id=${categoria.id})}" >Editar</a>
+									   		<a class="delete btn btn-sm btn-danger" th:href="@{/categoria/delete/{id}(id=${categoria.id})}">Excluir</a>
+									   </div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<a class="btn btn-sm btn-success" th:href="@{/categoria/add}" >Adicionar Nova</a>
+				</div>
 
+			</div>
+		</div>
+	
 </body>
 </html>

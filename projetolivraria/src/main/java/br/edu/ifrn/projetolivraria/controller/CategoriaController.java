@@ -67,9 +67,9 @@ public class CategoriaController {
 		return findAll();
     }
 
-	@GetMapping("/lista")
+	@GetMapping("/listar")
 	private ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView("categoria/lista");
+		ModelAndView mv = new ModelAndView("categoria/listar");
         mv.addObject("categorias", categoriaService.listaAll());
         
         return mv;
