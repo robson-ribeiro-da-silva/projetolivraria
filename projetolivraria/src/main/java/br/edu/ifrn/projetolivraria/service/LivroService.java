@@ -5,29 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifrn.projetolivraria.model.Autor;
-import br.edu.ifrn.projetolivraria.repository.AutorRepository;
+import br.edu.ifrn.projetolivraria.model.Livro;
+import br.edu.ifrn.projetolivraria.repository.LivroRepository;
 
 
 @Service
-public class AutorService {
-
-	@Autowired
-	private AutorRepository repository;
+public class LivroService {
 	
-	public Autor save(Autor autor) {
-		return repository.saveAndFlush(autor);
+	@Autowired
+	private LivroRepository repository;
+
+	public Livro save(Livro livro) {
+		return repository.saveAndFlush(livro);
 	}
 
-	public List<Autor> findAll() {
+	public List<Livro> findAll() {
 		return repository.findAll();
 	}
 	
-	public Autor findOne(Long id) {
+	public Livro findOne(Long id) {
 		return repository.getOne(id);
 	}
 	
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+
 }

@@ -11,35 +11,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.edu.ifrn.projetolivraria.model.Autor;
+import br.edu.ifrn.projetolivraria.model.Livro;
 import br.edu.ifrn.projetolivraria.service.AutorService;
-
+import br.edu.ifrn.projetolivraria.service.CategoriaService;
+import br.edu.ifrn.projetolivraria.service.EditoraService;
+import br.edu.ifrn.projetolivraria.service.LivroService;
 
 
 @Controller
-@RequestMapping("/autor")
-public class AutorController {
+@RequestMapping("/livro")
+public class LivroController {
 	
 	@Autowired
-	private AutorService service;
+	private LivroService service;
+	
+	@Autowired
+	private AutorService serviceautor;
+
+	@Autowired
+	private CategoriaService servicecategoria;
+	
+	@Autowired
+	private EditoraService serviceeditora;
 	
 	@GetMapping("/add")
-	public ModelAndView add(Autor autor) {
+	public ModelAndView add(Livro livro) {
 		
-		ModelAndView mv = new ModelAndView("/autor/form");
-		mv.addObject("autor", autor);
+		ModelAndView mv = new ModelAndView("/livro/form");
+		mv.addObject("autores", serviceautor.findAll());
+		mv.addObject("categorias", servicecategoria.listaAll());
+		mv.addObject("editoras", serviceeditora.listaAll());
+		mv.addObject("livro", livro);
 		
 		return mv;
 	}
 	
 	@PostMapping("/save")
-	public ModelAndView save(@Valid Autor autor, BindingResult result) {
+	public ModelAndView save(@Valid Livro livro, BindingResult result) {
 		
 		if(result.hasErrors()) {
-			return add(autor);
+			return add(livro);
 		}
 		
-		service.save(autor);
+		service.save(livro);
 		
 		return findAll();
 	}
@@ -47,8 +61,8 @@ public class AutorController {
 	@GetMapping("/listar")
 	public ModelAndView findAll() {
 		
-		ModelAndView mv = new ModelAndView("autor/listar");
-		mv.addObject("autors", service.findAll());
+		ModelAndView mv = new ModelAndView("livro/listar");
+		mv.addObject("livros", service.findAll());
 		
 		return mv;
 	}

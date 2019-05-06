@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html layout:decorate="~{'/layouts/layout'}">
+<head>
+<meta charset="UTF-8" />
+<title>Listagem de Livros</title>
+</head>
+<body>
+
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			<strong>Livros</strong>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-sm table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Titulo Livro</th>
+									<th>Autor</th>
+									<th>Editora</th>
+									<th>Categoria</th>
+									<th>Edição</th>
+									<th>Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="livro : ${livros}">
+									<td th:text="${livro.id}"></td>
+								    <td th:text="${livro.titulo}"></td> 
+								    <td th:text="${livro.autor}"></td>  
+								    <td th:text="${livro.editora.nome}"></td> 
+								    <td th:text="${livro.categoria.nome}"></td> 
+								    <td th:text="${livro.edicao}"></td> 
+									<td>
+										<div class="btn-group pull-right">
+									   		<a class="btn btn-sm btn-primary" th:href="@{/livro/edit/{id}(id=${livro.id})}" >Editar</a>
+									   		<a class="delete btn btn-sm btn-danger" th:href="@{/livro/delete/{id}(id=${livro.id})}">Excluir</a>
+									   </div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<a class="btn btn-sm btn-success" th:href="@{/livro/add}" >Adicionar Novo</a>
+				</div>
+
+			</div>
+		</div>
+	
+</body>
+</html>

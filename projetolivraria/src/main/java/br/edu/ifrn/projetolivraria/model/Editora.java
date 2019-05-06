@@ -1,12 +1,15 @@
 package br.edu.ifrn.projetolivraria.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+
 
 
 @Entity
@@ -26,6 +29,9 @@ public class Editora implements Serializable{
 	@Column(nullable = false, length = 100)
 	@NotBlank(message = "Cidade é uma informação obrigatória.")
 	private String cidade;
+	
+	@OneToMany(mappedBy="editora")
+	private List<Livro> livro;
 	
 	
 	public Long getId() {
@@ -52,6 +58,15 @@ public class Editora implements Serializable{
 		this.cidade = cidade;
 	}
 	
+
+	public List<Livro> getLivros() {
+		return livro;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livro = livros;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

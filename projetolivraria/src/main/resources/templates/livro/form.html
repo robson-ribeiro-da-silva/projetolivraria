@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html layout:decorate="~{'/layouts/layout'}">
+<head>
+<meta charset="UTF-8" />
+<title>Cadastro de Livro</title>
+</head>
+<body>
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong>Cadastro de Livro</strong>
+				</div>
+			<form class="container" method="post" th:object="${livro}"
+				th:action="@{/livro/save}">
+
+				<!--Input responsável em guardar o id-->
+				<input id="id" name="id" type="hidden" th:field="*{id}"
+					th:value="*{id}">
+
+				<!-- div reponsável em mostrar os erros -->
+				<div class="form-group row">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert" th:if="${#fields.hasAnyErrors()}">
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+
+						<div th:each="detailedError : ${#fields.detailedErrors()}">
+							<strong th:text="${detailedError.message}"> </strong>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<select th:field="*{autor}" class="selectpicker">
+						<option selected value="-1">Selecione um Autor</option>
+						<option th:each="autor : ${autores}"
+							th:value="${autor.id}" th:text="${autor.nome}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group row">
+					<select th:field="*{editora}" class="selectpicker">
+						<option selected value="-1">Selecione uma Editora</option>
+						<option th:each="editora : ${editoras}"
+							th:value="${editora.id}" th:text="${editora.nome}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group row">
+					<select th:field="*{categoria}" class="selectpicker">
+						<option selected value="-1">Selecione uma Categoria</option>
+						<option th:each="categoria : ${categorias}"
+							th:value="${categoria.id}" th:text="${categoria.nome}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('titulo')}? 'has-error'">
+					    <label>Titulo</label>
+					    <input type="text" class="form-control input-sm" th:field="*{titulo}" autofocus="autofocus" placeholder="Informe o titulo" maxlength="150"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('sinopse')}? 'has-error'">
+					    <label>Sinopse</label>
+					    <input type="text" class="form-control input-sm" th:field="*{sinopse}" autofocus="autofocus" placeholder="Informe a sinopse" maxlength="500"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('edicao')}? 'has-error'">
+						<label>Edição</label> 
+						<input type="text" class="form-control input-sm" th:field="*{edicao}" autofocus="autofocus" placeholder="Informe a Edição" maxlength="150" />
+					</div>
+				</div>
+				
+				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('ano')}? 'has-error'">
+					    <label>Ano</label>
+					    <input type="text" class="form-control input-sm" th:field="*{ano}" autofocus="autofocus" placeholder="Informe o ano" maxlength="150"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('peso')}? 'has-error'">
+					    <label>Peso</label>
+					    <input type="text" class="form-control input-sm" th:field="*{peso}" autofocus="autofocus" placeholder="Informe o peso" maxlength="500"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('preco')}? 'has-error'">
+						<label>Preço</label> 
+						<input type="text" class="form-control input-sm" th:field="*{preco}" autofocus="autofocus" placeholder="Informe o preço" maxlength="150" />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+					<button><a th:href="@{/}" class="btn btn-sm btn-danger">Cancelar</a></button>
+				</div>
+
+			</form>
+
+		</div>
+		</div>
+
+	
+</body>
+</html>

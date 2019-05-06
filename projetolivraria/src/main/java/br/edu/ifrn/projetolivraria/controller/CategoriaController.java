@@ -27,21 +27,6 @@ public class CategoriaController {
 		mv.addObject("categoria", categoria);
 		return mv;
 	}
-		
-	@GetMapping("/edit/{id}")
-	private ModelAndView edit( @PathVariable("id") Long id) {
-		Categoria cat = categoriaService.findOne(id);
-		return add(cat);
-	}
-	
-
-	@GetMapping("/delete/{id}")
-	private ModelAndView delete( @PathVariable("id") Long id) {
-		categoriaService.delete(id);
-		return findAll();
-	}
-
-
 	
 	@PostMapping("/save")
     public ModelAndView save(@Valid Categoria categoria, BindingResult result) {
@@ -55,24 +40,25 @@ public class CategoriaController {
 		return findAll();
     }
 	
-	@PostMapping("/update")
-    public ModelAndView update(@Valid Categoria categoria, BindingResult result) {
-		 
-		if(result.hasErrors()) {
-			return add(categoria);
-	    }
-
-		categoriaService.update(categoria);			
-				
-		return findAll();
-    }
-
 	@GetMapping("/listar")
 	private ModelAndView findAll() {
 		ModelAndView mv = new ModelAndView("categoria/listar");
         mv.addObject("categorias", categoriaService.listaAll());
         
         return mv;
+	}
+		
+	@GetMapping("/edit/{id}")
+	private ModelAndView edit( @PathVariable("id") Long id) {
+		Categoria cat = categoriaService.findOne(id);
+		return add(cat);
+	}
+	
+
+	@GetMapping("/delete/{id}")
+	private ModelAndView delete( @PathVariable("id") Long id) {
+		categoriaService.delete(id);
+		return findAll();
 	}
 
 }

@@ -13,17 +13,13 @@ public class EditoraService {
 	
 	@Autowired
 	private EditoraRepository repository;
+	
+	public void save(Editora editora) {
+        repository.saveAndFlush(editora);
+    }
 
 	public List<Editora> listaAll(){
 		return repository.findAll();
-	}
-	
-    public void save(Editora editora) {
-        repository.save(editora);
-    }
-	
-	public void update(Editora editora) {
-		repository.saveAndFlush(editora);
 	}
 	
 	public Editora findOne(Long id) {

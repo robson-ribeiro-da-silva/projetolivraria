@@ -1,11 +1,13 @@
 package br.edu.ifrn.projetolivraria.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -20,6 +22,9 @@ public class Categoria implements Serializable {
 	@Column(nullable = false, length = 100)
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
+	
+	@OneToMany(mappedBy="categoria")
+	private List<Livro> livro;
 	
 	
 	public Long getId() {
@@ -38,6 +43,14 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 	
+	public List<Livro> getLivros() {
+		return livro;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livro = livros;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

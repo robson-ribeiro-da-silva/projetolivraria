@@ -14,16 +14,12 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repository;
 
-	public List<Categoria> listaAll(){
-		return repository.findAll();
-	}
-	
-    public void save(Categoria categoria) {
-        repository.save(categoria);
+	public void save(Categoria categoria) {
+        repository.saveAndFlush(categoria);
     }
 	
-	public void update(Categoria categoria) {
-		repository.saveAndFlush(categoria);
+	public List<Categoria> listaAll(){
+		return repository.findAll();
 	}
 	
 	public Categoria  findOne(Long id) {

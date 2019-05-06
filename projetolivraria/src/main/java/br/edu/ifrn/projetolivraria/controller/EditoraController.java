@@ -27,21 +27,6 @@ public class EditoraController {
 		mv.addObject("editora", editora);
 		return mv;
 	}
-		
-	@GetMapping("/edit/{id}")
-	private ModelAndView edit( @PathVariable("id") Long id) {
-		Editora editora = editoraService.findOne(id);
-		return add(editora);
-	}
-	
-
-	@GetMapping("/delete/{id}")
-	private ModelAndView delete( @PathVariable("id") Long id) {
-		editoraService.delete(id);
-		return findAll();
-	}
-
-
 	
 	@PostMapping("/save")
     public ModelAndView save(@Valid Editora editora, BindingResult result) {
@@ -54,18 +39,6 @@ public class EditoraController {
 				
 		return findAll();
     }
-	
-	@PostMapping("/update")
-    public ModelAndView update(@Valid Editora editora, BindingResult result) {
-		 
-		if(result.hasErrors()) {
-			return add(editora);
-	    }
-
-		editoraService.update(editora);			
-				
-		return findAll();
-    }
 
 	@GetMapping("/listar")
 	private ModelAndView findAll() {
@@ -73,6 +46,18 @@ public class EditoraController {
         mv.addObject("editoras", editoraService.listaAll());
         
         return mv;
+	}
+		
+	@GetMapping("/edit/{id}")
+	private ModelAndView edit( @PathVariable("id") Long id) {
+		Editora editora = editoraService.findOne(id);
+		return add(editora);
+	}	
+
+	@GetMapping("/delete/{id}")
+	private ModelAndView delete( @PathVariable("id") Long id) {
+		editoraService.delete(id);
+		return findAll();
 	}
 
 }
