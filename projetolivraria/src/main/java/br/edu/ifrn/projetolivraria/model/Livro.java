@@ -50,16 +50,25 @@ public class Livro implements Serializable {
 	private double preco;
 	
 	@ManyToOne
-	@JoinTable(name="editora_id")
 	public Editora editora;
 	
 	@ManyToOne
-	@JoinTable(name="categoria_id")
 	public Categoria categoria;
 	
 	@ManyToMany
-	@JoinTable(name="autor_id")
+	@JoinTable(name="livro_autor")
 	public List<Autor> autor;
+	
+	@ManyToMany(mappedBy="livro")
+	public List<ItemPedido> itemPedido;
+
+	public List<ItemPedido> getItemPedido() {
+		return itemPedido;
+	}
+
+	public void setItemPedido(List<ItemPedido> itemPedido) {
+		this.itemPedido = itemPedido;
+	}
 
 	public Long getId() {
 		return id;

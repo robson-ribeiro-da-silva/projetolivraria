@@ -29,7 +29,9 @@
 								<tr th:each="livro : ${livros}">
 									<td th:text="${livro.id}"></td>
 								    <td th:text="${livro.titulo}"></td> 
-								    <td th:text="${livro.autor}"></td>  
+								    <td><div th:each="autor : ${livro.autor}" >
+										<div th:text= "${autor.nome}" ></div>								
+									</div></td>
 								    <td th:text="${livro.editora.nome}"></td> 
 								    <td th:text="${livro.categoria.nome}"></td> 
 								    <td th:text="${livro.edicao}"></td> 

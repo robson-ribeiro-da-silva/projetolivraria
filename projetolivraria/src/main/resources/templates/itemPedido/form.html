@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html layout:decorate="~{'/layouts/layout'}">
+<head>
+<meta charset="UTF-8" />
+<title>Realizar Pedido</title>
+</head>
+<body>
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong>Livros Disponíveis</strong>
+				</div>
+			<form class="container" method="post" th:object="${itemPedido}"
+				th:action="@{/itemPedido/save}">
+
+				<!--Input responsável em guardar o id-->
+				<input id="id" name="id" type="hidden" th:field="*{id}"
+					th:value="*{id}">
+
+				<!-- div reponsável em mostrar os erros -->
+				<div class="form-group row">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert" th:if="${#fields.hasAnyErrors()}">
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+
+						<div th:each="detailedError : ${#fields.detailedErrors()}">
+							<strong th:text="${detailedError.message}"> </strong>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<div th:field="*{livro}" class="control">
+						<div th:each="livro : ${livros}">
+							<hr class="sidebar-divider my-1">
+								<div>
+									<i class="fas fa-fw fa-book"></i>
+								</div>	
+								<div th:value="${livro.id}" th:text="${livro.titulo}" ></div>
+								<div th:value="${livro.id}" th:text="${livro.sinopse}" ></div>
+								<div th:value="${livro.id}" th:text="${livro.ano}" ></div>
+								<div th:value="${livro.id}" th:text="${livro.edicao}" ></div>
+								<div th:value="${livro.id}" th:text="${livro.editora.nome}" ></div>
+								<div th:value="${livro.id}" th:text="${livro.categoria.nome}" ></div>
+								<div th:value="${livro.id}" th:each="autor : ${livro.autor}" >
+									<div th:value="${livro.id}" th:text= "${autor.nome}" ></div>								
+								</div>
+								<div th:value="${livro.id}" th:text="${livro.preco}" ></div>
+								<!--  <div th:value="${livro.id}" th:text="${livro.isbn}" ></div> -->
+								<!--  <button class="btn btn-sm btn-primary" th:value="${livro.id}" >Comprar</button>  -->
+								<!--  <button type="submit" class="btn btn-primary">Comprar</button> -->
+								<a class="btn btn-sm btn-primary" th:href="@{/itemPedido/addCarrinho/{id}(id=${livro.id}){itemPedido}(itemPedido=${itemPedido})}" >Adicionar No Carrinho</a>
+							<hr class="sidebar-divider my-0">
+						</div>
+					</div>
+				</div>
+				
+
+				<div class="form-group row">
+					<!-- <button type="submit" class="btn btn-primary">Finalizar Pedido</button> 
+					<button><a th:href="@{/itemPedido/add}" class="btn btn-sm btn-danger">Cancelar Pedido</a></button> -->
+				</div>
+
+			</form>
+
+		</div>
+		</div>
+
+	
+</body>
+</html>

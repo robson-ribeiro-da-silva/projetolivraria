@@ -24,7 +24,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="#"> <i class="fas fa-fw fa-user"></i> <span>Robson Silva</span>
+				href="#"> <i class="fas fa-fw fa-user"></i> <span>Robson Silva - ADMIN</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -41,6 +41,7 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/usuario/add}">Usuario</a>
 						<a class="collapse-item" th:href="@{/livro/add}">Livro</a>
 						<a class="collapse-item" th:href="@{/autor/add}">Autor</a>
 						<a class="collapse-item" th:href="@{/categoria/add}">Categoria</a>
@@ -58,10 +59,56 @@
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/usuario/listar}">Usuario</a>
 						<a class="collapse-item" th:href="@{/livro/listar}">Livro</a>
 						<a class="collapse-item" th:href="@{/autor/listar}">Autor</a>
 						<a class="collapse-item" th:href="@{/categoria/listar}">Categoria</a>
 						<a class="collapse-item" th:href="@{/editora/listar}">Editora</a>
+					</div>
+				</div>
+			</li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item active"><a class="nav-link"
+				href="#"> <i class="fas fa-fw fa-user"></i> <span>Robson Silva - USUARIO</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Heading -->
+			
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseComprar"
+				aria-expanded="false" aria-controls="collapseComprar"> <i
+					class="fas fa-fw fa-book"></i> <span>Comprar</span></a>
+					
+				<div id="collapseComprar" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/itemPedido/add}">Livro</a>
+						<a class="collapse-item" th:href="@{/autor/add}">Autor</a>
+					</div>
+				</div>
+			</li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseCompras"
+				aria-expanded="true" aria-controls="collapseCompras"> <i
+					class="fas fa-fw fa-search"></i> <span>Minhas Compras</span></a>
+					
+				<div id="collapseCompras" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/livro/listar}">Livro</a>
+						<a class="collapse-item" th:href="@{/autor/listar}">Autor</a>
 					</div>
 				</div>
 			</li>
