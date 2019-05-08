@@ -1,11 +1,14 @@
 package br.edu.ifrn.projetolivraria.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -34,6 +37,9 @@ public class Usuario implements Serializable{
 	@Column(nullable = false, length = 15)
 	@NotBlank(message = "Bairro é uma informação obrigatória.")
 	private String bairro;
+	
+	@OneToMany(mappedBy="usuario")
+	private List<Pedido> pedido;
 
 	public Long getId() {
 		return id;

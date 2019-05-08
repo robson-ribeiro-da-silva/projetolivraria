@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html layout:decorate="~{'/layouts/layout'}">
+<head>
+<meta charset="UTF-8" />
+<title>Dados de Entrega</title>
+</head>
+<body>
+
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+			<div class="panel-heading">
+					<strong>Dados de Entrega</strong>
+				<div class="form-group row">
+					<div>
+						<label>Dados do Pedido</label>
+						<div th:text="${pedido.id}" ></div>
+						<div th:text="${pedido.valorTotal}" ></div>
+						<div th:text="${pedido.data}" ></div>
+						
+								
+						<hr class="sidebar-divider my-0">
+					</div>
+					</div>
+			</div>
+			<form class="container" method="post" th:object="${frete}"
+				th:action="@{/frete/save}">
+				<input type="radio" th:field="*{pedido}" th:value="${pedido.id}"><br>
+
+				<!--Input responsável em guardar o id-->
+				<input id="id" name="id" type="hidden" th:field="*{id}"
+					th:value="*{id}">
+
+				<!-- div reponsável em mostrar os erros -->
+				<div class="form-group row">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert" th:if="${#fields.hasAnyErrors()}">
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+
+						<div th:each="detailedError : ${#fields.detailedErrors()}">
+							<strong th:text="${detailedError.message}"> </strong>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('cepDestino')}? 'has-error'">
+					    <label>Informe o CEP</label>
+					    <input type="text" class="form-control input-sm" th:field="*{cepDestino}" autofocus="autofocus" maxlength="150"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('rua')}? 'has-error'">
+					    <label>Rua</label>
+					    <input type="text" class="form-control input-sm" th:field="*{rua}" autofocus="autofocus"  maxlength="150"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('bairro')}? 'has-error'">
+						<label>Bairro</label> 
+						<input type="text" class="form-control input-sm" th:field="*{bairro}" maxlength="150"/>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+					<button><a th:href="@{/}" class="btn btn-sm btn-danger">Cancelar</a></button>
+				</div>
+
+			</form>
+			</div>
+		</div>
+	
+</body>
+</html>

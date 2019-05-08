@@ -7,7 +7,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pedido implements Serializable{
@@ -24,6 +26,12 @@ public class Pedido implements Serializable{
 	
 	@OneToMany(mappedBy="pedido")
 	public List<ItemPedido> itemPedido;
+	
+	@ManyToOne
+	private Usuario usuario;
+	
+	@OneToOne
+	public Frete frete;
 
 	public Long getId() {
 		return id;
@@ -55,6 +63,14 @@ public class Pedido implements Serializable{
 
 	public void setItemPedido(List<ItemPedido> itemPedido) {
 		this.itemPedido = itemPedido;
+	}
+
+	public Frete getFrete() {
+		return frete;
+	}
+
+	public void setFrete(Frete frete) {
+		this.frete = frete;
 	}
 
 	public static long getSerialversionuid() {

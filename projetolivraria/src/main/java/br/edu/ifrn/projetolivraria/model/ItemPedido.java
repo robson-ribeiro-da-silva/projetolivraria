@@ -21,7 +21,7 @@ public class ItemPedido implements Serializable{
 	@GeneratedValue
 	private Long id;
 	
-	private int quantidade;
+	private int quantidade = 1;
 	
 	private double valorTotal;
 	

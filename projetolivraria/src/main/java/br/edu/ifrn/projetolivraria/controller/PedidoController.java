@@ -1,5 +1,7 @@
 package br.edu.ifrn.projetolivraria.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.ifrn.projetolivraria.model.Frete;
+import br.edu.ifrn.projetolivraria.model.ItemPedido;
 import br.edu.ifrn.projetolivraria.model.Pedido;
+import br.edu.ifrn.projetolivraria.service.FreteService;
+import br.edu.ifrn.projetolivraria.service.ItemPedidoService;
 import br.edu.ifrn.projetolivraria.service.PedidoService;
 
 
@@ -23,11 +29,52 @@ public class PedidoController {
 	@Autowired
 	private PedidoService service;
 	
+	@Autowired
+	private ItemPedidoService  serviceitempedido;
+	
+	@Autowired
+	private FreteService servicefrete;
+	
 	@GetMapping("/add")
 	public ModelAndView add(Pedido pedido) {
 		
 		ModelAndView mv = new ModelAndView("/pedido/form");
 		mv.addObject("pedido", pedido);
+		
+		return mv;
+	}
+	
+	@GetMapping("/addPedido/{id}")
+	public ModelAndView addPedido(@PathVariable("id") Long id) {
+		
+		Pedido pedido = new Pedido();
+		
+		service.save(pedido);
+		
+		ItemPedido ipedido = serviceitempedido.findOne(id);
+		
+		ipedido.setPedido(pedido);
+		
+		serviceitempedido.save(ipedido);
+		
+		pedido.setValorTotal(ipedido.getValorTotal());
+		pedido.setData(new Date());
+		
+		service.save(pedido);
+		
+		//ModelAndView mv = new ModelAndView("/pedido/form");
+		//mv.addObject("pedido", pedido);
+		
+		Frete frete = new Frete();
+		servicefrete.save(frete);
+		
+		frete.setPedido(pedido);
+		
+		servicefrete.save(frete);
+		
+		ModelAndView mv = new ModelAndView("/frete/form");
+		mv.addObject("pedido", pedido);
+		mv.addObject("frete", frete);
 		
 		return mv;
 	}

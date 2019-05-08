@@ -49,18 +49,18 @@ public class ItemPedidoController {
 		return findAll();
 	}
 	
-	@GetMapping("/addCarrinho/{id},{itemPedido}")
+	@GetMapping("/addCarrinho/{{id},{itemPedido}}")
 	public String addCarrinho(@PathVariable("id") Long id, @PathVariable("itemPedido") ItemPedido itemPedido, BindingResult result) {
 		
 		if(result.hasErrors()) {
-			return "redirect: /itemPedido/form";
+			return "redirect: {itemPedido/form}";
 		}
 		
 		Livro livro = serviceLivro.findOne(id);
 		itemPedido.livro.add(livro);
 		service.save(itemPedido);
 		
-		return "redirect: /itemPedido/form";
+		return "redirect: {itemPedido/form}";
 	}
 	
 	@GetMapping("/listar")

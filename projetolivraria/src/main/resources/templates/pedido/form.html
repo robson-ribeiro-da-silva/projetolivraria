@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{'/layouts/layout'}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8" />
+<title>Finalizar do Pedido</title>
 </head>
 <body>
 
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			<strong>Finalizar do Pedido</strong>
+				<div class="form-group row">
+					<div>
+						<div th:text="${pedido.id}" ></div>
+						<div th:text="${pedido.valorTotal}" ></div>
+						<div th:text="${pedido.data}" ></div>
+								
+						<hr class="sidebar-divider my-0">
+					</div>
+					</div>
+					</div>
+			</div>
+		</div>
+	
 </body>
 </html>
