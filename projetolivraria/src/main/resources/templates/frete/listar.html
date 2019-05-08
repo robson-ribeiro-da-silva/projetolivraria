@@ -9,7 +9,7 @@
 		<div class="content-wrapper" layout:fragment="corpo">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-			<strong>fretes</strong>
+			<strong>Detalhes do Frete</strong>
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
@@ -24,7 +24,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="frete : ${fretes}">
+								<tr>
 									<td th:text="${frete.id}"></td>
 									<td th:text="${frete.cepDestino}"></td>
 									<td th:text="${frete.bairro}"></td>
@@ -40,7 +40,8 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<a class="btn btn-sm btn-success" th:href="@{/autor/add}" >Adicionar Novo</a>
+					<a class="btn btn-sm btn-success" th:href="@{/itemPedido/add}" >Realizar Nova Compra</a>
+					<a class="btn btn-sm btn-info" th:href="@{/}" >Sair</a>
 				</div>
 
 			</div>

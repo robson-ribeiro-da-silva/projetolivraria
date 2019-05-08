@@ -40,7 +40,7 @@ public class FreteController {
 		
 		service.save(frete);
 		
-		return findAll();
+		return details(frete.getId());
 	}
 	
 	@GetMapping("/listar")
@@ -48,6 +48,15 @@ public class FreteController {
 		
 		ModelAndView mv = new ModelAndView("frete/listar");
 		mv.addObject("fretes", service.findAll());
+		
+		return mv;
+	}
+	
+	@GetMapping("/details/{id}")
+	public ModelAndView details(@PathVariable("id") Long id) {
+		
+		ModelAndView mv = new ModelAndView("frete/listar");
+		mv.addObject("frete", service.findOne(id));
 		
 		return mv;
 	}

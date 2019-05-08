@@ -46,22 +46,9 @@ public class ItemPedidoController {
 		
 		service.save(itemPedido);
 		
-		return findAll();
+		return details(itemPedido.getId());
 	}
 	
-	@GetMapping("/addCarrinho/{{id},{itemPedido}}")
-	public String addCarrinho(@PathVariable("id") Long id, @PathVariable("itemPedido") ItemPedido itemPedido, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			return "redirect: {itemPedido/form}";
-		}
-		
-		Livro livro = serviceLivro.findOne(id);
-		itemPedido.livro.add(livro);
-		service.save(itemPedido);
-		
-		return "redirect: {itemPedido/form}";
-	}
 	
 	@GetMapping("/listar")
 	public ModelAndView findAll() {
@@ -76,6 +63,15 @@ public class ItemPedidoController {
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		
 		return add(service.findOne(id));
+	}
+	
+	@GetMapping("/details/{id}")
+	public ModelAndView details(@PathVariable("id") Long id) {
+		
+		ModelAndView mv = new ModelAndView("itemPedido/details");
+		mv.addObject("itemPedido", service.findOne(id));
+		
+		return mv;
 	}
 	
 	@GetMapping("/delete/{id}")

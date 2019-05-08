@@ -51,13 +51,6 @@
 								</div>
 								<div th:text="${livro.preco}" ></div>
 								
-								<div class="form-group row">                                                          
-									<div class="col-md-4" th:classappend="${#fields.hasErrors('quantidade')}? 'has-error'">
-									    <label>Quantidade</label>
-									    <input type="text" class="form-control input-sm" th:field="*{quantidade}" autofocus="autofocus" maxlength="20"/>
-									</div>
-								</div>
-		
 								
 								<input type="radio" th:field="*{livro}" th:value="${livro.id}"><div th:text="${livro.titulo}"></div><br>
 								
@@ -68,7 +61,7 @@
 							<hr class="sidebar-divider my-0">
 						</div>
 					</div>
-					</div>
+					
 				</div>
 				
 				
@@ -79,6 +72,14 @@
 						th:value="${livro.id}" th:text="${livro.titulo}"></option>
 					</select>
 				</div>  --> 
+				
+				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('quantidade')}? 'has-error'">
+					    <label>Infrome a Quantidade Desejada</label>
+					    <input type="text" class="form-control input-sm" th:field="*{quantidade}" autofocus="autofocus" maxlength="20"/>
+					</div>
+				</div>
+		
 				
 
 				<div class="form-group row">

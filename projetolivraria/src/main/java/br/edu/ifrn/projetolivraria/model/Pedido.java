@@ -30,7 +30,7 @@ public class Pedido implements Serializable{
 	@ManyToOne
 	private Usuario usuario;
 	
-	@OneToOne
+	@OneToOne(mappedBy="pedido")
 	public Frete frete;
 
 	public Long getId() {

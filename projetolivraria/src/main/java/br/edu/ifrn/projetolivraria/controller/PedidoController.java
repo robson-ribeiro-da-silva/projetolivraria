@@ -62,15 +62,10 @@ public class PedidoController {
 		
 		service.save(pedido);
 		
-		//ModelAndView mv = new ModelAndView("/pedido/form");
-		//mv.addObject("pedido", pedido);
-		
 		Frete frete = new Frete();
 		servicefrete.save(frete);
-		
 		frete.setPedido(pedido);
-		
-		servicefrete.save(frete);
+	
 		
 		ModelAndView mv = new ModelAndView("/frete/form");
 		mv.addObject("pedido", pedido);
