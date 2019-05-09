@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 import br.edu.ifrn.projetolivraria.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{ }
+public interface UsuarioRepository extends JpaRepository<Usuario, Long>{ 
+	
+		//public Usuario findByEmail(String email);
+	
+}

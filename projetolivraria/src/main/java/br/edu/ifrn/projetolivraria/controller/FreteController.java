@@ -24,6 +24,8 @@ public class FreteController {
 	
 	@GetMapping("/add")
 	public ModelAndView add(Frete frete) {
+		double valor = 5.0;
+		frete.setValor(valor);
 		
 		ModelAndView mv = new ModelAndView("/frete/form");
 		mv.addObject("frete", frete);

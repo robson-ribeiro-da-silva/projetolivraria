@@ -30,5 +30,10 @@ public class UsuarioService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
+	/*
+	public Usuario findEmail(String email ) {
+		return repository.findByEmail(email);
+	}*/
 
 }

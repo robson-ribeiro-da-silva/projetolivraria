@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.ifrn.projetolivraria.model.Endereco;
 import br.edu.ifrn.projetolivraria.model.Usuario;
+import br.edu.ifrn.projetolivraria.model.ViaCEPClient;
 import br.edu.ifrn.projetolivraria.service.UsuarioService;
 
 
@@ -38,10 +40,21 @@ public class UsuarioController {
 			return add(usuario);
 		}
 		
+		String cep = usuario.getCep();
+		ViaCEPClient cliente = new ViaCEPClient();
+		
+		Endereco endereco = cliente.buscaEnderecoPor(cep);
+		if(endereco != null){
+			
+			usuario.setEstado(endereco.getUf());
+			usuario.setCidade(endereco.getLocalidade());
+		}
+		
 		service.save(usuario);
 		
 		return findAll();
 	}
+	
 	
 	@GetMapping("/listar")
 	public ModelAndView findAll() {

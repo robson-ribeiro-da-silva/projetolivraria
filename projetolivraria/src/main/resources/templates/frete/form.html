@@ -9,23 +9,35 @@
 		<div class="content-wrapper" layout:fragment="corpo">
 			<div class="panel panel-default">
 			<div class="panel-heading">
-					<strong>Dados de Entrega</strong>
-				<div class="form-group row">
-					<div>
-						<label>Dados do Pedido</label>
-						<div th:text="${pedido.id}" ></div>
-						<div th:text="${pedido.valorTotal}" ></div>
-						<div th:text="${pedido.data}" ></div>
-						
-								
-						<hr class="sidebar-divider my-0">
+					<strong>Detalhes do Pedido</strong>
+					<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-sm table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>Numero do Pedido</th>
+									<th>Valor Total</th>
+									<th>Data do Pedido</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td th:text="${pedido.id}" ></td>
+									<td th:text="${pedido.valorTotal}" ></td>
+									<td th:text="${pedido.data}"></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-					</div>
+				</div>
+				
 			</div>
 			<form class="container" method="post" th:object="${frete}"
 				th:action="@{/frete/save}">
+				
 				<input type="radio" th:field="*{pedido}" th:value="${pedido.id}"><br>
-
+				<strong>Dados de Entrega</strong>
+				
 				<!--Input responsável em guardar o id-->
 				<input id="id" name="id" type="hidden" th:field="*{id}"
 					th:value="*{id}">
@@ -68,8 +80,8 @@
 				</div>
 
 				<div class="form-group row">
-					<button type="submit" class="btn btn-primary">Cadastrar</button>
-					<button><a th:href="@{/}" class="btn btn-sm btn-danger">Cancelar</a></button>
+					<button type="submit" class="btn btn-primary">Finalizar</button>
+					<button><a th:href="@{/itemPedido/add}" class="btn btn-sm btn-danger">Cancelar</a></button>
 				</div>
 
 			</form>

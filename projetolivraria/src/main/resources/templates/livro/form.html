@@ -3,6 +3,27 @@
 <head>
 <meta charset="UTF-8" />
 <title>Cadastro de Livro</title>
+
+<style>
+div.scrollmenu {
+  background-color: white;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: white;
+}
+</style>
+
 </head>
 <body>
 		<div class="content-wrapper" layout:fragment="corpo">
@@ -33,16 +54,26 @@
 					</div>
 				</div>
 				
+				<!-- 
 				<div class="form-group row">
-					<select th:field="*{autor}" class="selectpicker">
+					<select th:field="*{autor}" class="form-control">
 						<option selected value="-1">Selecione um Autor</option>
 						<option th:each="autor : ${autores}"
 							th:value="${autor.id}" th:text="${autor.nome}"></option>
 					</select>
 				</div>
-				
+				 -->
+				 <label>Selecione o(s) Autor(es):</label>
+				 <div class="form-group">
+				 <div class="scrollmenu">
+					 <div th:each="autor : ${autores}">
+						 <input type="checkbox" th:field="*{autor}" th:value="${autor.id}"><span th:text="${'  '}"></span><span th:text="${autor.nome}"></span><br>
+					 </div>
+				 </div>
+				 </div>
+				 
 				<div class="form-group row">
-					<select th:field="*{editora}" class="selectpicker">
+					<select th:field="*{editora}" class="form-control">
 						<option selected value="-1">Selecione uma Editora</option>
 						<option th:each="editora : ${editoras}"
 							th:value="${editora.id}" th:text="${editora.nome}"></option>
@@ -50,7 +81,7 @@
 				</div>
 				
 				<div class="form-group row">
-					<select th:field="*{categoria}" class="selectpicker">
+					<select th:field="*{categoria}" class="form-control">
 						<option selected value="-1">Selecione uma Categoria</option>
 						<option th:each="categoria : ${categorias}"
 							th:value="${categoria.id}" th:text="${categoria.nome}"></option>
@@ -60,35 +91,35 @@
 				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('titulo')}? 'has-error'">
 					    <label>Titulo</label>
-					    <input type="text" class="form-control input-sm" th:field="*{titulo}" autofocus="autofocus" placeholder="Informe o titulo" maxlength="150"/>
+					    <input type="text" class="form-control input-sm" th:field="*{titulo}" autofocus="autofocus"  maxlength="150"/>
 					</div>
 				</div>
 				
 				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('sinopse')}? 'has-error'">
 					    <label>Sinopse</label>
-					    <input type="text" class="form-control input-sm" th:field="*{sinopse}" autofocus="autofocus" placeholder="Informe a sinopse" maxlength="500"/>
+					    <input type="text" class="form-control input-sm" th:field="*{sinopse}" autofocus="autofocus"  maxlength="500"/>
 					</div>
 				</div>
 				
 				<div class="form-group row">
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('edicao')}? 'has-error'">
 						<label>Edição</label> 
-						<input type="text" class="form-control input-sm" th:field="*{edicao}" autofocus="autofocus" placeholder="Informe a Edição" maxlength="150" />
+						<input type="text" class="form-control input-sm" th:field="*{edicao}" autofocus="autofocus"  maxlength="150" />
 					</div>
 				</div>
 				
 				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('ano')}? 'has-error'">
 					    <label>Ano</label>
-					    <input type="text" class="form-control input-sm" th:field="*{ano}" autofocus="autofocus" placeholder="Informe o ano" maxlength="150"/>
+					    <input type="text" class="form-control input-sm" th:field="*{ano}" autofocus="autofocus"  maxlength="150"/>
 					</div>
 				</div>
 				
 				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('peso')}? 'has-error'">
 					    <label>Peso</label>
-					    <input type="text" class="form-control input-sm" th:field="*{peso}" autofocus="autofocus" placeholder="Informe o peso" maxlength="500"/>
+					    <input type="text" class="form-control input-sm" th:field="*{peso}" autofocus="autofocus"  maxlength="500"/>
 					</div>
 				</div>
 				

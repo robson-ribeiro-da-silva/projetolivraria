@@ -41,6 +41,13 @@
 				</div>
 				
 				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('cep')}? 'has-error'">
+					    <label>CEP</label>
+					    <input type="text" class="form-control input-sm" th:field="*{cep}" autofocus="autofocus" maxlength="150"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('bairro')}? 'has-error'">
 					    <label>Bairro</label>
 					    <input type="text" class="form-control input-sm" th:field="*{bairro}" autofocus="autofocus" placeholder="Informe o Bairro" maxlength="150"/>

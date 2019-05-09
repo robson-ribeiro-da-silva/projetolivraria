@@ -1,5 +1,7 @@
 package br.edu.ifrn.projetolivraria.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +42,21 @@ public class ItemPedidoController {
 	@PostMapping("/save")
 	public ModelAndView save(@Valid ItemPedido itemPedido, BindingResult result) {
 		
+		double valor = 0.0;
+		int i = 0;
+		
 		if(result.hasErrors()) {
 			return add(itemPedido);
 		}
+		
+		List<Livro> livros = itemPedido.getLivro();
+		for(Livro l : livros){
+			valor += l.getPreco();
+			i++;
+		}
+		
+		itemPedido.setValorTotal(valor);
+		itemPedido.setQuantidade(i);
 		
 		service.save(itemPedido);
 		

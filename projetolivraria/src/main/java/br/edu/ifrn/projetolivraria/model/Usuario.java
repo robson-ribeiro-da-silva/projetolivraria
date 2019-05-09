@@ -14,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class Usuario implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -29,6 +31,14 @@ public class Usuario implements Serializable{
 	@Column(nullable = false, length = 15)
 	@NotBlank(message = "Senha é uma informação obrigatória.")
 	private String senha;
+	
+	@Column(nullable = false, length = 15)
+	@NotBlank(message = "CEP é uma informação obrigatória.")
+	private String cep;
+	
+	private String estado;
+	
+	private String cidade;
 	
 	@Column(nullable = false, length = 15)
 	@NotBlank(message = "Rua é uma informação obrigatória.")
@@ -71,6 +81,39 @@ public class Usuario implements Serializable{
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public List<Pedido> getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(List<Pedido> pedido) {
+		this.pedido = pedido;
 	}
 
 	public String getRua() {

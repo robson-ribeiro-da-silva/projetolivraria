@@ -9,31 +9,33 @@
 		<div class="content-wrapper" layout:fragment="corpo">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-			<strong>Item</strong>
+					<strong>Carrinho de Compras</strong>
+					<div><label>Itens do Pedido</label></div>		
 				<div class="form-group row">
-					<div>
-							<hr class="sidebar-divider my-1">
-								<div>
-									<i class="fas fa-fw fa-book"></i>
-								</div>	
-								
+					<div>								
 								<div th:each="livro : ${itemPedido.livro}" >
-									<div th:text="${livro.titulo}" ></div>
-									<div th:text="${livro.sinopse}" ></div>
-									<div th:text="${livro.ano}" ></div>
-									<div th:text="${livro.edicao}" ></div>
-									<div th:text="${livro.editora.nome}" ></div>
-									<div th:text="${livro.categoria.nome}" ></div>
-																
+									<hr class="sidebar-divider my-1">
+										<div>
+											<i class="fas fa-fw fa-book"></i>
+										</div>	
+										<div><label>Titulo do Livro:</label>
+										<div th:text="${livro.titulo}" ></div></div>
+										<div><label>Editora:</label>
+										<div th:text="${livro.editora.nome}" ></div></div>
+									<hr class="sidebar-divider my-1">							
 								</div>
-								<div th:text="${itemPedido.valorTotal}" ></div>
-								<div th:text="${itemPedido.quantidade}" ></div>
+								
+								<div><label>Valor Total do Pedido:</label>
+								<div th:text="${itemPedido.valorTotal}" ></div></div>
+								<div><label>Quantidade de Itens:</label>
+								<label><div th:text="${itemPedido.quantidade}" ></div></label></div>
 								<a class="btn btn-sm btn-primary" th:href="@{/pedido/addPedido/{id}(id=${itemPedido.id})}" >Confirmar</a>
 								
 							<hr class="sidebar-divider my-0">
 						</div>
 					
 					</div>
+				</div>
 			</div>
 		</div>
 	
