@@ -39,7 +39,7 @@ public class Livro implements Serializable {
 	
 	//@Column(nullable = false, length = 15)
 	//@NotBlank(message = "Isbn é uma informação obrigatória.")
-	//private int isbn;
+	private int isbn;
 	
 	//@Column(nullable = false, length = 15)
 	//@NotBlank(message = "Peso é uma informação obrigatória.")

@@ -19,6 +19,7 @@ import br.edu.ifrn.projetolivraria.model.Pedido;
 import br.edu.ifrn.projetolivraria.service.FreteService;
 import br.edu.ifrn.projetolivraria.service.ItemPedidoService;
 import br.edu.ifrn.projetolivraria.service.PedidoService;
+import br.edu.ifrn.projetolivraria.service.UsuarioService;
 
 
 
@@ -34,6 +35,9 @@ public class PedidoController {
 	
 	@Autowired
 	private FreteService servicefrete;
+	
+	@Autowired
+	private UsuarioService serviceusuario;
 	
 	@GetMapping("/add")
 	public ModelAndView add(Pedido pedido) {
@@ -59,6 +63,7 @@ public class PedidoController {
 		
 		pedido.setValorTotal(ipedido.getValorTotal());
 		pedido.setData(new Date());
+		pedido.setUsuario(serviceusuario.findOne((long) 1));
 		
 		service.save(pedido);
 		

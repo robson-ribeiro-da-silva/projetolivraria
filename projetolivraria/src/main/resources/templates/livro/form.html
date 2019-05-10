@@ -95,6 +95,8 @@ div.scrollmenu a:hover {
 					</div>
 				</div>
 				
+				
+				
 				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('sinopse')}? 'has-error'">
 					    <label>Sinopse</label>
@@ -126,7 +128,7 @@ div.scrollmenu a:hover {
 				<div class="form-group row">
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('preco')}? 'has-error'">
 						<label>Preço</label> 
-						<input type="text" class="form-control input-sm" th:field="*{preco}" autofocus="autofocus" placeholder="Informe o preço" maxlength="150" />
+						<input type="text" class="form-control input-sm" th:field="*{preco}" autofocus="autofocus" maxlength="150" />
 					</div>
 				</div>
 

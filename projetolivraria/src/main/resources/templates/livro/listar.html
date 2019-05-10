@@ -20,8 +20,6 @@
 									<th>Titulo Livro</th>
 									<th>Autor</th>
 									<th>Editora</th>
-									<th>Categoria</th>
-									<th>Edição</th>
 									<th>Ações</th>
 								</tr>
 							</thead>
@@ -33,10 +31,9 @@
 										<div th:text= "${autor.nome}" ></div>								
 									</div></td>
 								    <td th:text="${livro.editora.nome}"></td> 
-								    <td th:text="${livro.categoria.nome}"></td> 
-								    <td th:text="${livro.edicao}"></td> 
 									<td>
 										<div class="btn-group pull-right">
+											<a class="btn btn-sm btn-info" th:href="@{/livro/details/{id}(id=${livro.id})}" >Detalhes</a>
 									   		<a class="btn btn-sm btn-primary" th:href="@{/livro/edit/{id}(id=${livro.id})}" >Editar</a>
 									   		<a class="delete btn btn-sm btn-danger" th:href="@{/livro/delete/{id}(id=${livro.id})}">Excluir</a>
 									   </div>

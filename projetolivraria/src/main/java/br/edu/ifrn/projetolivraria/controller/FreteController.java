@@ -94,10 +94,20 @@ public class FreteController {
 		return mv;
 	}
 	
+	
 	@GetMapping("/details/{id}")
 	public ModelAndView details(@PathVariable("id") Long id) {
 		
 		ModelAndView mv = new ModelAndView("frete/listar");
+		mv.addObject("frete", service.findOne(id));
+		
+		return mv;
+	}
+	
+	@GetMapping("/alldetails/{id}")
+	public ModelAndView alldetails(@PathVariable("id") Long id) {
+		
+		ModelAndView mv = new ModelAndView("frete/detalhes");
 		mv.addObject("frete", service.findOne(id));
 		
 		return mv;

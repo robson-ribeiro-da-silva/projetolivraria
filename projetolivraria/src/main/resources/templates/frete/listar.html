@@ -31,9 +31,10 @@
 									<td th:text="${frete.rua}"></td>
 									<td>
 										<div class="btn-group pull-right">
-									   		
+											<a class="btn btn-sm btn-info" th:href="@{/frete/alldetails/{id}(id=${frete.id})}" >Mais Detalhes</a>
 									   </div>
 									</td>
+								
 								</tr>
 							</tbody>
 						</table>

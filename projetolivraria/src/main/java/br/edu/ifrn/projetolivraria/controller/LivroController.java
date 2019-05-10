@@ -73,6 +73,15 @@ public class LivroController {
 		return add(service.findOne(id));
 	}
 	
+	@GetMapping("/details/{id}")
+	public ModelAndView details(@PathVariable("id") Long id) {
+		
+		ModelAndView mv = new ModelAndView("livro/detalhes");
+		mv.addObject("livro", service.findOne(id));
+		
+		return mv;
+	}
+	
 	@GetMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id) {
 		

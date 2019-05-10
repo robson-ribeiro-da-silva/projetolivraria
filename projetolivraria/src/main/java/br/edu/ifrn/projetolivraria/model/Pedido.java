@@ -73,6 +73,14 @@ public class Pedido implements Serializable{
 		this.frete = frete;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

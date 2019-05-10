@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorate="~{'/layouts/layout'}">
+<head>
+<meta charset="UTF-8" />
+<title>Detalhes do Livro</title>
+
+</head>
+<body>
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong>Detalhes do Livro</strong>
+				</div>
+				
+				<div class="form-group row">
+					<div>
+							<hr class="sidebar-divider my-1">
+							<div class="row">
+							<div class="form-group col-md-2">
+							 <div class="w3-padding w3-xlarge w3-teal">
+								<div>
+									<li class="w3-jumbo w3-teal"><i class="fas fa-fw fa-book"></i></li>
+								</div>	
+							</div>
+							</div>
+							<div class="form-group col-md-6">
+								<div th:field="*{livro}" ></div>
+								<label>Titulo:</label> <div th:text="${livro.titulo}" ></div>
+								<hr class="sidebar-divider my-0">
+								<label>Sinopse:</label> <div th:text="${livro.sinopse}" ></div>	
+								<hr class="sidebar-divider my-0">	
+								<label>Preço:</label> <div th:text="${livro.preco}" ></div>
+								<hr class="sidebar-divider my-0">
+								<label>Peso:</label> <div th:text="${livro.peso}" ></div>								
+				
+							</div>
+								<div class="form-group col-md-4">
+									<label>Ano:</label> <div th:text="${livro.ano}" ></div>			
+									<hr class="sidebar-divider my-0">						
+									<label>Editora: </label><div th:text="${livro.editora.nome}" ></div>
+									<hr class="sidebar-divider my-0">
+									<label>Categoria: </label><div th:text="${livro.categoria.nome}" ></div>
+									<hr class="sidebar-divider my-0">
+									<label>Edição:</label> <div th:text="${livro.edicao}" ></div>	
+									<hr class="sidebar-divider my-0">
+									<label>Autor(es):</label>
+									<div th:each="autor : ${livro.autor}" >
+										<div th:text= "${autor.nome}" ></div>								
+									</div>
+							
+							</div>
+							</div>
+								
+							<hr class="sidebar-divider my-0">
+						
+					</div>
+					
+				</div>
+				
+				<div class="form-group row">
+					<a class="btn btn-sm btn-info" th:href="@{/itemPedido/add}" >Voltar</a>
+				</div>
+
+			
+		</div>
+		</div>
+
+	
+</body>
+</html>
