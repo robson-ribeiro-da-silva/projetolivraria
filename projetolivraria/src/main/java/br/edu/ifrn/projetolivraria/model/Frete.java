@@ -32,6 +32,10 @@ public class Frete implements Serializable {
 
 	private String cepDestino;
 	
+	private String estado;
+	
+	private String cidade;
+	
 	private String rua;
 	
 	private String bairro;
@@ -86,6 +90,22 @@ public class Frete implements Serializable {
 
 	public void setCepOrigem(String cepOrigem) {
 		this.cepOrigem = cepOrigem;
+	}
+	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
 	public String getCepDestino() {

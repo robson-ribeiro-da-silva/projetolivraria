@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifrn.projetolivraria.model.Endereco;
 import br.edu.ifrn.projetolivraria.model.Usuario;
-import br.edu.ifrn.projetolivraria.model.ViaCEPClient;
 import br.edu.ifrn.projetolivraria.service.UsuarioService;
 
 
@@ -41,11 +41,12 @@ public class UsuarioController {
 		}
 		
 		String cep = usuario.getCep();
-		ViaCEPClient cliente = new ViaCEPClient();
 		
-		Endereco endereco = cliente.buscaEnderecoPor(cep);
-		if(endereco != null){
-			
+		RestTemplate template = new RestTemplate();
+		
+		Endereco endereco = template.getForObject("https://viacep.com.br/ws/"+cep+"/json",Endereco.class);
+		
+		if(endereco != null){			
 			usuario.setEstado(endereco.getUf());
 			usuario.setCidade(endereco.getLocalidade());
 		}
