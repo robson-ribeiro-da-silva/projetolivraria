@@ -36,7 +36,7 @@ public class Usuario implements Serializable{
 	@NotBlank(message = "CEP é uma informação obrigatória.")
 	private String cep;
 	
-	private String estado;
+	private String uf;
 	
 	private String cidade;
 	
@@ -91,13 +91,16 @@ public class Usuario implements Serializable{
 		this.cep = cep;
 	}
 
-	
-	public String getEstado() {
-		return estado;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getCidade() {

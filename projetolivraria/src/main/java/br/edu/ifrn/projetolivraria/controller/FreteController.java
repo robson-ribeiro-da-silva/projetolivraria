@@ -63,7 +63,7 @@ public class FreteController {
 		
 		System.out.println(calcprazo1);*/
 		
-		String cep = frete.getCepDestino();
+		/*String cep = frete.getCepDestino();
 		
 		RestTemplate template = new RestTemplate();
 		
@@ -72,7 +72,7 @@ public class FreteController {
 		if(endereco != null){			
 			frete.setEstado(endereco.getUf());
 			frete.setCidade(endereco.getLocalidade());
-		}
+		}*/
 		
 		frete.setValor(5.0);
 		frete.setPeso(1.0);

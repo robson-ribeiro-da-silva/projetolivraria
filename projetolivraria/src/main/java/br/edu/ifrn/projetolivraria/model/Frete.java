@@ -30,9 +30,9 @@ public class Frete implements Serializable {
 	
 	private String cepOrigem;
 
-	private String cepDestino;
+	private String cep;
 	
-	private String estado;
+	private String uf;
 	
 	private String cidade;
 	
@@ -92,13 +92,13 @@ public class Frete implements Serializable {
 		this.cepOrigem = cepOrigem;
 	}
 	
-	
-	public String getEstado() {
-		return estado;
+
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public String getCidade() {
@@ -109,12 +109,13 @@ public class Frete implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public String getCepDestino() {
-		return cepDestino;
+
+	public String getCep() {
+		return cep;
 	}
 
-	public void setCepDestino(String cepDestino) {
-		this.cepDestino = cepDestino;
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public String getRua() {

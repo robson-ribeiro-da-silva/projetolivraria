@@ -40,16 +40,16 @@ public class UsuarioController {
 			return add(usuario);
 		}
 		
-		String cep = usuario.getCep();
+		//String cep = usuario.getCep();
 		
-		RestTemplate template = new RestTemplate();
+		//RestTemplate template = new RestTemplate();
 		
-		Endereco endereco = template.getForObject("https://viacep.com.br/ws/"+cep+"/json",Endereco.class);
+		//Endereco endereco = template.getForObject("https://viacep.com.br/ws/"+cep+"/json",Endereco.class);
 		
-		if(endereco != null){			
+		/*if(endereco != null){			
 			usuario.setEstado(endereco.getUf());
 			usuario.setCidade(endereco.getLocalidade());
-		}
+		}*/
 		
 		service.save(usuario);
 		
