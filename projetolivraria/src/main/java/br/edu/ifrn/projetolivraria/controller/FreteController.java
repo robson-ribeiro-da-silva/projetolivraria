@@ -113,6 +113,15 @@ public class FreteController {
 		return mv;
 	}
 	
+	@GetMapping("/detailsByPedido/{id}")
+	public ModelAndView detailsByPedido(@PathVariable("id") Long id) {
+		
+		ModelAndView mv = new ModelAndView("frete/detailsByPedido");
+		mv.addObject("frete", service.findOne(id));
+		
+		return mv;
+	}
+	
 	@GetMapping("/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		

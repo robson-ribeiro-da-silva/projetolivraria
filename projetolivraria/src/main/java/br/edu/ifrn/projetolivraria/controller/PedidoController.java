@@ -1,6 +1,7 @@
 package br.edu.ifrn.projetolivraria.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -15,9 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifrn.projetolivraria.model.Frete;
 import br.edu.ifrn.projetolivraria.model.ItemPedido;
+import br.edu.ifrn.projetolivraria.model.Livro;
 import br.edu.ifrn.projetolivraria.model.Pedido;
+import br.edu.ifrn.projetolivraria.model.Usuario;
 import br.edu.ifrn.projetolivraria.service.FreteService;
 import br.edu.ifrn.projetolivraria.service.ItemPedidoService;
+import br.edu.ifrn.projetolivraria.service.LivroService;
 import br.edu.ifrn.projetolivraria.service.PedidoService;
 import br.edu.ifrn.projetolivraria.service.UsuarioService;
 
@@ -38,6 +42,9 @@ public class PedidoController {
 	
 	@Autowired
 	private UsuarioService serviceusuario;
+	
+	@Autowired
+	private LivroService servicelivro;
 	
 	@GetMapping("/add")
 	public ModelAndView add(Pedido pedido) {
@@ -100,6 +107,25 @@ public class PedidoController {
 		return mv;
 	}
 	
+	@GetMapping("/listarporusuario")
+	public ModelAndView findByUsuario() {
+		Usuario u = serviceusuario.findOne((long) 1);
+		
+		List<Pedido> pedidos = service.findByUsuario(u);
+		//List<ItemPedido> itempedidos = serviceitempedido.findByListPedido(pedidos);
+		/*List<Livro> livros = servicelivro.findByPedido((long) 99);
+		
+		for(Livro l : livros){
+			System.out.println(" AQUIIIIIIII ----->>>>> "+ l.getTitulo());
+		}*/
+		
+		ModelAndView mv = new ModelAndView("pedido/listar");
+		mv.addObject("pedidos", pedidos);
+		//mv.addObject("itempedidos", itempedidos);
+		
+		return mv;
+	}
+	
 	@GetMapping("/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		
@@ -112,6 +138,32 @@ public class PedidoController {
 		service.delete(id);
 		
 		return findAll();
+	}
+	
+	@GetMapping("/detailLivroPedido/{id}")
+	public ModelAndView detailLivroByPedido(@PathVariable("id") Long id) {
+		
+		List<Livro> livros = servicelivro.findByPedido(id);
+		
+		/*for(Livro l : livros){
+			System.out.println(" AQUIIIIIIII ----->>>>> "+ l.getTitulo());
+		}*/
+			
+		ModelAndView mv = new ModelAndView("livro/listarporpedido");
+		mv.addObject("livros", livros);
+		
+		return mv;
+	}
+	
+	@GetMapping("/detailsByPedido/{id}")
+	public ModelAndView detailsByPedido(@PathVariable("id") Long id) {
+		
+		Pedido p = service.findOne(id);
+		
+		ModelAndView mv = new ModelAndView("frete/detailsByPedido");
+		mv.addObject("frete", servicefrete.findByPedido(p));
+		
+		return mv;
 	}
 
 }

@@ -92,6 +92,7 @@ public class Frete implements Serializable {
 		this.cepOrigem = cepOrigem;
 	}
 	
+	
 	public String getEstado() {
 		return estado;
 	}

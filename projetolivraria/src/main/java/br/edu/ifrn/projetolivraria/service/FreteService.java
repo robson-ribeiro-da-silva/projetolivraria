@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifrn.projetolivraria.model.Frete;
+import br.edu.ifrn.projetolivraria.model.Pedido;
 import br.edu.ifrn.projetolivraria.repository.FreteRepository;
 
 
@@ -29,6 +30,10 @@ public class FreteService {
 	
 	public void delete(Long id) {
 		repository.deleteById(id);
+	}
+	
+	public Frete findByPedido(Pedido p) {
+		return repository.findByPedido(p);
 	}
 
 }

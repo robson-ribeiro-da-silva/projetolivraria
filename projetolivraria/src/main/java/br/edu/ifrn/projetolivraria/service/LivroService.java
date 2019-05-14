@@ -30,5 +30,9 @@ public class LivroService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
+	public List<Livro> findByPedido(Long id) {
+		return repository.findByPedido(id);
+	}
 
 }

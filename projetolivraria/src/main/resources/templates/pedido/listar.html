@@ -18,14 +18,24 @@
 								<tr>
 									<th>ID</th>
 									<th>Data Pedido</th>
-									<th>Valor Total</th>									
+									<th>Valor Total</th>	
+									<th>Detalhes</th>									
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="pedido : ${pedidos}">
 									<td th:text="${pedido.id}"></td>
 									<td th:text="${pedido.data}"></td>
-									<td th:text="${pedido.valorTotal}"></td>									
+									<td th:text="${pedido.valorTotal}"></td>	
+									<td>
+										<div class="btn-group pull-right">
+											<a class="btn btn-sm btn-info" th:href="@{/pedido/detailLivroPedido/{id}(id=${pedido.id})}" >Itens do Pedido</a>
+									   		<a class="btn btn-sm btn-primary" th:href="@{/pedido/detailsByPedido/{id}(id=${pedido.id})}" >Detalhes do Frete</a>
+									   		<!-- <a class="btn btn-sm btn-primary" th:href="@{/livro/edit/{id}(id=${livro.id})}" >Editar</a>
+									   		<a class="delete btn btn-sm btn-danger" th:href="@{/livro/delete/{id}(id=${livro.id})}">Excluir</a>
+									   		 -->
+									   </div>
+									</td>									
 									
 								</tr>
 							</tbody>
