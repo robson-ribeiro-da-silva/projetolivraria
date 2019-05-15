@@ -27,8 +27,11 @@
 									<div th:text="${livro.categoria.nome}" ></div>
 																
 								</div>
+								<label>Valor Pedido com Frete</label>
 								<div th:text="${itemPedido.valorTotal}" ></div>
 								<div th:text="${itemPedido.quantidade}" ></div>
+								<label>Valor do Frete</label>
+								<div th:text="${itemPedido.frete.valor}" ></div>
 								<a class="btn btn-sm btn-primary" th:href="@{/pedido/addPedido/{id}(id=${itemPedido.id})}" >Confirmar</a>
 								
 							<hr class="sidebar-divider my-0">

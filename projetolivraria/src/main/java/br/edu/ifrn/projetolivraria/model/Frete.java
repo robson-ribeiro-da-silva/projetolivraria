@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -22,14 +23,17 @@ public class Frete implements Serializable {
 
 	private Double valor;
 	
+	private int totDias;
+	
 	private Double peso;
 	
 	private Date dataEntregaCorreios;
 	
-	private Date dataEntregaCliente;
+	private String dataEntregaCliente;
 	
 	private String cepOrigem;
 
+	@NotBlank(message = "Cep é uma informação obrigatória.")
 	private String cep;
 	
 	private String uf;
@@ -43,6 +47,10 @@ public class Frete implements Serializable {
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	public Pedido pedido;
+	
+	
+	@OneToOne(mappedBy="frete")
+	public ItemPedido itempedido;
 
 	public Long getId() {
 		return id;
@@ -52,12 +60,22 @@ public class Frete implements Serializable {
 		this.id = id;
 	}
 
+	
+
 	public Double getValor() {
 		return valor;
 	}
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public int getTotDias() {
+		return totDias;
+	}
+
+	public void setTotDias(int totDias) {
+		this.totDias = totDias;
 	}
 
 	public Double getPeso() {
@@ -76,11 +94,13 @@ public class Frete implements Serializable {
 		this.dataEntregaCorreios = dataEntregaCorreios;
 	}
 
-	public Date getDataEntregaCliente() {
+	
+
+	public String getDataEntregaCliente() {
 		return dataEntregaCliente;
 	}
 
-	public void setDataEntregaCliente(Date dataEntregaCliente) {
+	public void setDataEntregaCliente(String dataEntregaCliente) {
 		this.dataEntregaCliente = dataEntregaCliente;
 	}
 
@@ -140,6 +160,15 @@ public class Frete implements Serializable {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+
+
+	public ItemPedido getItempedido() {
+		return itempedido;
+	}
+
+	public void setItempedido(ItemPedido itempedido) {
+		this.itempedido = itempedido;
 	}
 
 	public static long getSerialversionuid() {

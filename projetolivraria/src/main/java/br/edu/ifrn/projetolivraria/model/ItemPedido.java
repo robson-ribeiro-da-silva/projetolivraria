@@ -6,10 +6,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -25,6 +27,8 @@ public class ItemPedido implements Serializable{
 	
 	private double valorTotal;
 	
+	private String  cep;
+	
 	@ManyToMany
 	@JoinTable(name="itemPedido_livro")
 	public List<Livro> livro;
@@ -32,6 +36,9 @@ public class ItemPedido implements Serializable{
 	@ManyToOne
 	public Pedido pedido;
 
+	@OneToOne
+	@JoinColumn(name="frete_id")
+	public Frete frete;
 	
 	
 	public Pedido getPedido() {
@@ -44,6 +51,14 @@ public class ItemPedido implements Serializable{
 
 	public Long getId() {
 		return id;
+	}
+	
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public void setId(Long id) {
@@ -72,6 +87,14 @@ public class ItemPedido implements Serializable{
 
 	public void setLivro(List<Livro> livro) {
 		this.livro = livro;
+	}
+	
+	public Frete getFrete() {
+		return frete;
+	}
+
+	public void setFrete(Frete frete) {
+		this.frete = frete;
 	}
 
 	public static long getSerialversionuid() {

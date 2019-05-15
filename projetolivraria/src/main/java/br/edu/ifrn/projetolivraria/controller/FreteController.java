@@ -33,7 +33,7 @@ public class FreteController {
 	
 	@GetMapping("/add")
 	public ModelAndView add(Frete frete) {
-		double valor = 5.0;
+		Double valor = 5.0;
 		frete.setValor(valor);
 		
 		ModelAndView mv = new ModelAndView("/frete/form");
@@ -72,13 +72,15 @@ public class FreteController {
 		if(endereco != null){			
 			frete.setEstado(endereco.getUf());
 			frete.setCidade(endereco.getLocalidade());
-		}*/
+		}
 		
 		frete.setValor(5.0);
 		frete.setPeso(1.0);
-		frete.setDataEntregaCliente(new Date());
+		//frete.setDataEntregaCliente(new Date());
 		frete.setDataEntregaCorreios(new Date());
-		frete.setCepOrigem("59910000");
+		frete.setCepOrigem("59910000");*/
+		
+		frete.setDataEntregaCorreios(new Date());
 		
 		service.save(frete);
 		

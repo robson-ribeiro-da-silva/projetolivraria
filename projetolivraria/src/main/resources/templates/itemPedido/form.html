@@ -4,6 +4,23 @@
 <meta charset="UTF-8" />
 <title>Realizar Pedido</title>
 
+
+<script type="text/javascript">
+	function fMasc(objeto, mascara) {
+		obj = objeto
+		masc = mascara
+		setTimeout("fMascEx()", 1)
+	}
+	function fMascEx() {
+		obj.value = masc(obj.value)
+	}
+	function mCEP(cep) {
+		cep = cep.replace(/\D/g, "")
+		cep = cep.replace(/(\d{5})(\d)/, "$1-$2")
+		return cep
+	}
+</script>
+
 </head>
 <body>
 		<div class="content-wrapper" layout:fragment="corpo">
@@ -89,17 +106,17 @@
 					</select>
 				</div>  --> 
 				
-				<!-- <div class="form-group row">                                                          
-					<div class="col-md-4" th:classappend="${#fields.hasErrors('quantidade')}? 'has-error'">
-					    <label>Infrome a Quantidade Desejada</label>
-					    <input type="text" class="form-control input-sm" th:field="*{quantidade}" autofocus="autofocus" maxlength="20"/>
+				 <div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('cep')}? 'has-error'">
+					    <label>Informe o Cep para calcular preço e prazo do Frete</label>
+					    <input type="text" class="form-control input-sm" th:field="*{cep}" onkeydown="javascript: fMasc( this, mCEP );" maxlength="9"/>
 					</div>
-				</div>  -->
+				</div>  
 		
 				
 
 				<div class="form-group row">
-					<button type="submit" class="btn btn-primary">Ver Carrinho</button> 
+					<button type="submit" class="btn btn-primary">Ir Para o Carrinho De Compras</button> 
 					<button><a th:href="@{/itemPedido/add}" class="btn btn-sm btn-danger">Cancelar Pedido</a></button>
 				</div>
 

@@ -4,93 +4,6 @@
 <meta charset="UTF-8" />
 <title>Dados de Entrega</title>
 
-<!-- Adicionando Javascript -->
-<script type="text/javascript" >
-
-function limpa_formulário_cep() {
-        //Limpa valores do formulário de cep.
-        document.getElementById('rua').value=("");
-        document.getElementById('bairro').value=("");
-        document.getElementById('cidade').value=("");
-        document.getElementById('uf').value=("");
-}
-
-function meu_callback(conteudo) {
-    if (!("erro" in conteudo)) {
-        //Atualiza os campos com os valores.
-        document.getElementById('rua').value=(conteudo.logradouro);
-        document.getElementById('bairro').value=(conteudo.bairro);
-        document.getElementById('cidade').value=(conteudo.localidade);
-        document.getElementById('uf').value=(conteudo.uf);
-    } //end if.
-    else {
-        //CEP não Encontrado.
-        limpa_formulário_cep();
-        alert("CEP não encontrado.");
-    }
-}
-
-function pesquisacep(valor) {
-
-    //Nova variável "cep" somente com dígitos.
-    var cep = valor.replace(/\D/g, '');
-
-
-
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
-
-        //Expressão regular para validar o CEP.
-        var validacep = /^[0-9]{8}$/;
-
-        //Valida o formato do CEP.
-        if(validacep.test(cep)) {
-
-            //Preenche os campos com "..." enquanto consulta webservice.
-            document.getElementById('rua').value="...";
-            document.getElementById('bairro').value="...";
-            document.getElementById('cidade').value="...";
-            document.getElementById('uf').value="...";
-
-            //Cria um elemento javascript.
-            var script = document.createElement('script');
-
-            //Sincroniza com o callback.
-            script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
-
-            //Insere script no documento e carrega o conteúdo.
-            document.body.appendChild(script);
-
-        } //end if.
-        else {
-            //cep é inválido.
-            limpa_formulário_cep();
-            alert("Formato de CEP inválido.");
-        }
-    } //end if.
-    else {
-        //cep sem valor, limpa formulário.
-        limpa_formulário_cep();
-    }
-};
-
-</script>
-
-<script type="text/javascript">
-	function fMasc(objeto, mascara) {
-		obj = objeto
-		masc = mascara
-		setTimeout("fMascEx()", 1)
-	}
-	function fMascEx() {
-		obj.value = masc(obj.value)
-	}
-	function mCEP(cep) {
-		cep = cep.replace(/\D/g, "")
-		cep = cep.replace(/(\d{5})(\d)/, "$1-$2")
-		return cep
-	}
-</script>
 
 </head>
 
@@ -107,7 +20,7 @@ function pesquisacep(valor) {
 							<thead>
 								<tr>
 									<th>Numero do Pedido</th>
-									<th>Valor Total</th>
+									<th>Valor Total com o Frete</th>
 									<th>Data do Pedido</th>
 								</tr>
 							</thead>
@@ -123,17 +36,41 @@ function pesquisacep(valor) {
 				</div>
 				
 			</div>
-			<form class="container" method="post" th:object="${frete}"
-				th:action="@{/frete/save}">
+			
+			<div class="panel-heading">
+					<strong>Detalhes do Frete</strong>
+					<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-sm table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>Dias</th>
+									<th>Valor do Frete</th>
+									<th>Data de entrega</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td th:text="${frete.totDias}" ></td>
+									<td th:text="${frete.valor}" ></td>
+									<td th:text="${frete.dataEntregaCliente}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 				
+			</div>
+				<!-- <form class="container">
+			
 				<input type="radio" th:field="*{pedido}" th:value="${pedido.id}"><br>
 				<strong>Dados de Entrega</strong>
 				
-				<!--Input responsável em guardar o id-->
+				
 				<input id="id" name="id" type="hidden" th:field="*{id}"
 					th:value="*{id}">
 
-				<!-- div reponsável em mostrar os erros -->
+				
 				<div class="form-group row">
 					<div class="alert alert-danger alert-dismissible fade show"
 						role="alert" th:if="${#fields.hasAnyErrors()}">
@@ -182,14 +119,18 @@ function pesquisacep(valor) {
 					    <label>Rua</label>
 					    <input type="text" class="form-control input-sm" th:field="*{rua}" autofocus="autofocus" placeholder="Informe A Rua" maxlength="150"/>
 					</div>
-				</div>
+				</div> 
 
 				<div class="form-group row">
 					<button type="submit" class="btn btn-primary">Finalizar</button>
 					<button><a th:href="@{/itemPedido/add}" class="btn btn-sm btn-danger">Cancelar</a></button>
 				</div>
 
-			</form>
+			</form> -->
+			
+				<div class="form-group row">
+					<button><a th:href="@{/pedido/listarporusuario}" class="btn btn-sm btn-primary">Ver Pedidos</a></button>
+				</div>
 			</div>
 		</div>
 	

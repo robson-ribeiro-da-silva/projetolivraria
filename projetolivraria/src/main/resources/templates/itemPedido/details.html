@@ -45,8 +45,14 @@
 								<div th:text="${itemPedido.valorTotal}" ></div></div>
 								<div><label>Quantidade de Itens:</label>
 								<label><div th:text="${itemPedido.quantidade}" ></div></label></div>
-								<a class="btn btn-sm btn-primary" th:href="@{/pedido/addPedido/{id}(id=${itemPedido.id})}" >Confirmar</a>
+								<div><label>Valor do Frete</label>
+								<div th:text="${itemPedido.frete.valor}" ></div></div>
 								
+								
+								<div class="form-group row">
+									<a class="btn btn-sm btn-primary" th:href="@{/pedido/addPedido/{id}(id=${itemPedido.id})}" >Confirmar</a>
+									<button><a th:href="@{/itemPedido/add}" class="btn btn-sm btn-danger">Cancelar</a></button>
+								</div>
 							
 						
 					

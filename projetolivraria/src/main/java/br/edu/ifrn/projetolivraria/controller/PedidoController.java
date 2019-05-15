@@ -67,17 +67,18 @@ public class PedidoController {
 		ipedido.setPedido(pedido);
 		
 		serviceitempedido.save(ipedido);
+		Frete frete = ipedido.getFrete();
 		
 		pedido.setValorTotal(ipedido.getValorTotal());
 		pedido.setData(new Date());
-		pedido.setUsuario(serviceusuario.findOne((long) 1));
+		pedido.setUsuario(serviceusuario.findOne((long) 172));
 		
 		service.save(pedido);
 		
-		Frete frete = new Frete();
-		servicefrete.save(frete);
 		frete.setPedido(pedido);
-	
+		servicefrete.save(frete);
+		
+		
 		
 		ModelAndView mv = new ModelAndView("/frete/form");
 		mv.addObject("pedido", pedido);
@@ -109,7 +110,7 @@ public class PedidoController {
 	
 	@GetMapping("/listarporusuario")
 	public ModelAndView findByUsuario() {
-		Usuario u = serviceusuario.findOne((long) 1);
+		Usuario u = serviceusuario.findOne((long) 172);
 		
 		List<Pedido> pedidos = service.findByUsuario(u);
 		//List<ItemPedido> itempedidos = serviceitempedido.findByListPedido(pedidos);
