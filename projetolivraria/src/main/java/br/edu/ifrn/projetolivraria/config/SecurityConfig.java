@@ -17,4 +17,5 @@ public class SecurityConfig {
 		System.out.println(new BCryptPasswordEncoder().encode("123"));
 	}
 
-}*/
+}
+*/
