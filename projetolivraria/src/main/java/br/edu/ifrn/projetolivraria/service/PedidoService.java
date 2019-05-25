@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.edu.ifrn.projetolivraria.model.Pedido;
+import br.edu.ifrn.projetolivraria.model.User;
 import br.edu.ifrn.projetolivraria.model.Usuario;
 import br.edu.ifrn.projetolivraria.repository.PedidoRepository;
 
@@ -31,7 +32,7 @@ public class PedidoService {
 		repository.deleteById(id);
 	}
 	
-	public List<Pedido> findByUsuario(Usuario u) {
+	public List<Pedido> findByUsuario(User u) {
 		return repository.findByUsuario(u);
 	}
 

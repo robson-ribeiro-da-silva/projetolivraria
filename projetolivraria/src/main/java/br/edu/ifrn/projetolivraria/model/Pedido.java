@@ -28,7 +28,7 @@ public class Pedido implements Serializable{
 	public List<ItemPedido> itemPedido;
 	
 	@ManyToOne
-	private Usuario usuario;
+	private User usuario;
 	
 	@OneToOne(mappedBy="pedido")
 	public Frete frete;
@@ -73,11 +73,13 @@ public class Pedido implements Serializable{
 		this.frete = frete;
 	}
 
-	public Usuario getUsuario() {
+	
+
+	public User getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(User usuario) {
 		this.usuario = usuario;
 	}
 

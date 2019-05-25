@@ -22,17 +22,21 @@
 									<th>Estado</th>
 									<th>Cidade</th>
 									<th>Rua</th>
+									<th>Username</th>
+									<th>Senha</th>
 									<th>Ações</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="usuario : ${usuarios}">
 									<td th:text="${usuario.id}"></td>
-									<td th:text="${usuario.nome}"></td>
+									<td th:text="${usuario.nomeCompleto}"></td>
 									<td th:text="${usuario.email}"></td>
 									<td th:text="${usuario.uf}"></td>
 									<td th:text="${usuario.cidade}"></td>
 									<td th:text="${usuario.rua}"></td>
+									<td th:text="${usuario.username}"></td>
+									<td th:text="${usuario.password}"></td>
 									<td>
 										<div class="btn-group pull-right">
 									   		<a class="btn btn-sm btn-primary" th:href="@{/usuario/edit/{id}(id=${usuario.id})}" >Editar</a>

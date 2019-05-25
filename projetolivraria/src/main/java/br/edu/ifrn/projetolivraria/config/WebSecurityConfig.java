@@ -1,51 +1,54 @@
 package br.edu.ifrn.projetolivraria.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+@EnableGlobalMethodSecurity(securedEnabled=true,prePostEnabled = true)
+public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.
-		authorizeRequests()			
-			.antMatchers("/autor/**").hasAnyRole("ADMIN")
-			.antMatchers("/livro/**").hasAnyRole("ADMIN")
-			.antMatchers("/categoria/**").hasAnyRole("ADMIN")
-			.antMatchers("/editora/**").hasAnyRole("ADMIN")
-			.antMatchers("/usuario/**").hasAnyRole("ADMIN")
-			.antMatchers("/https://**").hasAnyRole("ADMIN")
-			.antMatchers("/frete/**").hasAnyRole("USER")
-			.antMatchers("/pedido/**").hasAnyRole("USER")
-			.antMatchers("/itemPedido/**").hasAnyRole("USER")
-			.antMatchers("http:/**").hasAnyRole("USER")
-			.antMatchers("https:/**").hasAnyRole("USER")
-			.anyRequest()
-			.authenticated()
-		.and()
-		.formLogin();
+		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll()
+				.anyRequest().authenticated()
+				.and().formLogin().permitAll()
+				.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 		
+		http.csrf().disable();
+        http.headers().frameOptions().disable();
+	
 	}
 	
-	@Autowired
-	public void configureGloblal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-		.withUser("usuario").password("{noop}1234").roles("USER")
-		.and()
-		.withUser("admin").password("{noop}123").roles("ADMIN", "USER");
-		
-	}
+	
+	
+	 @Autowired
+	  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		  auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+	  }
+	 
+	
+	@Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/");
-		web.ignoring().antMatchers("/h2/**");
+		web.ignoring().antMatchers("/resources/**", "/css/**",  "/vendor/**",  "/img/**",  "/js/**",  "/scss/**", "/h2/**");
+		web.ignoring().antMatchers("http::/**", "https::/**", "/http::/**", "/https::/**");
 	}
-
-
 }

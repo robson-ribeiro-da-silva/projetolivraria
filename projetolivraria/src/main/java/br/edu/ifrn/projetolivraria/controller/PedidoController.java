@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +20,13 @@ import br.edu.ifrn.projetolivraria.model.Frete;
 import br.edu.ifrn.projetolivraria.model.ItemPedido;
 import br.edu.ifrn.projetolivraria.model.Livro;
 import br.edu.ifrn.projetolivraria.model.Pedido;
+import br.edu.ifrn.projetolivraria.model.User;
 import br.edu.ifrn.projetolivraria.model.Usuario;
 import br.edu.ifrn.projetolivraria.service.FreteService;
 import br.edu.ifrn.projetolivraria.service.ItemPedidoService;
 import br.edu.ifrn.projetolivraria.service.LivroService;
 import br.edu.ifrn.projetolivraria.service.PedidoService;
+import br.edu.ifrn.projetolivraria.service.UserService;
 import br.edu.ifrn.projetolivraria.service.UsuarioService;
 
 
@@ -41,7 +45,7 @@ public class PedidoController {
 	private FreteService servicefrete;
 	
 	@Autowired
-	private UsuarioService serviceusuario;
+	private UserService serviceusuario;
 	
 	@Autowired
 	private LivroService servicelivro;
@@ -56,7 +60,11 @@ public class PedidoController {
 	}
 	
 	@GetMapping("/addPedido/{id}")
-	public ModelAndView addPedido(@PathVariable("id") Long id) {
+	public ModelAndView addPedido(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetails userDetails) {
+		
+		String user = userDetails.getUsername();
+		
+		User usuario = serviceusuario.findByUsername(user);
 		
 		Pedido pedido = new Pedido();
 		
@@ -71,7 +79,8 @@ public class PedidoController {
 		
 		pedido.setValorTotal(ipedido.getValorTotal());
 		pedido.setData(new Date());
-		pedido.setUsuario(serviceusuario.findOne((long) 172));
+		
+		pedido.setUsuario(usuario);
 		
 		service.save(pedido);
 		
@@ -109,10 +118,15 @@ public class PedidoController {
 	}
 	
 	@GetMapping("/listarporusuario")
-	public ModelAndView findByUsuario() {
-		Usuario u = serviceusuario.findOne((long) 172);
+	public ModelAndView findByUsuario(@AuthenticationPrincipal UserDetails userDetails) {
 		
-		List<Pedido> pedidos = service.findByUsuario(u);
+		String user = userDetails.getUsername();
+		
+		User usuario = serviceusuario.findByUsername(user);
+		
+		//Usuario u = serviceusuario.findOne();
+		
+		List<Pedido> pedidos = service.findByUsuario(usuario);
 		//List<ItemPedido> itempedidos = serviceitempedido.findByListPedido(pedidos);
 		/*List<Livro> livros = servicelivro.findByPedido((long) 99);
 		

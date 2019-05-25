@@ -3,29 +3,28 @@ package br.edu.ifrn.projetolivraria.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.edu.ifrn.projetolivraria.model.Endereco;
-import br.edu.ifrn.projetolivraria.model.Usuario;
-import br.edu.ifrn.projetolivraria.service.UsuarioService;
+import br.edu.ifrn.projetolivraria.model.User;
+import br.edu.ifrn.projetolivraria.service.UserService;
 
 
 @Controller
-@RequestMapping("/usuario1")
-public class UsuarioController {
+@RequestMapping("/usuario")
+public class UserController {
 	
 	@Autowired
-	private UsuarioService service;
+	private UserService service;
 	
 	@GetMapping("/add")
-	public ModelAndView add(Usuario usuario) {
+	public ModelAndView add(User usuario) {
 		
 		ModelAndView mv = new ModelAndView("/usuario/form");
 		mv.addObject("usuario", usuario);
@@ -34,7 +33,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/save")
-	public ModelAndView save(@Valid Usuario usuario, BindingResult result) {
+	public ModelAndView save(@Valid User usuario, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			return add(usuario);
@@ -50,6 +49,8 @@ public class UsuarioController {
 			usuario.setEstado(endereco.getUf());
 			usuario.setCidade(endereco.getLocalidade());
 		}*/
+		String senha = usuario.getPassword();
+		usuario.setPassword(new BCryptPasswordEncoder().encode(senha));
 		
 		service.save(usuario);
 		

@@ -125,9 +125,9 @@ function pesquisacep(valor) {
 				</div>
 				
 				<div class="form-group row">                                                          
-					<div class="col-md-4" th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('nomeCompleto')}? 'has-error'">
 					    <label>Nome</label>
-					    <input type="text" class="form-control input-sm" th:field="*{nome}" autofocus="autofocus" placeholder="Informe o Nome" maxlength="150"/>
+					    <input type="text" class="form-control input-sm" th:field="*{nomeCompleto}" autofocus="autofocus" placeholder="Informe o Nome" maxlength="150"/>
 					</div>
 				</div>
 				
@@ -174,9 +174,16 @@ function pesquisacep(valor) {
 				</div>
 				
 				<div class="form-group row">
-					<div class="col-md-4" th:classappend="${#fields.hasErrors('senha')}? 'has-error'">
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('username')}? 'has-error'">
+						<label>Crie um Username</label> 
+						<input type="text" class="form-control input-sm" th:field="*{username}" maxlength="150" placeholder="Informe uma Senha"/>
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
 						<label>Crie uma Senha</label> 
-						<input type="password" class="form-control input-sm" th:field="*{senha}" maxlength="150" placeholder="Informe uma Senha"/>
+						<input type="password" class="form-control input-sm" th:field="*{password}" maxlength="150" placeholder="Informe uma Senha"/>
 					</div>
 				</div>
 
