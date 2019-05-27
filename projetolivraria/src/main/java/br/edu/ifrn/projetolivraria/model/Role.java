@@ -1,5 +1,6 @@
 package br.edu.ifrn.projetolivraria.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,12 @@ import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 public class Role implements GrantedAuthority{
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @GeneratedValue

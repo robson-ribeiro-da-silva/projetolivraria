@@ -79,9 +79,9 @@ public class User implements UserDetails{
 	
 	
 	
-	/*@LazyCollection(LazyCollectionOption.FALSE)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
-	private Set<Role> role;*/
+	private Set<Role> role = new HashSet<Role>();
 	
 	
 
@@ -98,10 +98,9 @@ public class User implements UserDetails{
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		//Set<GrantedAuthority> authorities = new HashSet<>();
-		//authorities.addAll(getRole());
-		//return authorities;
-		return null;
+		Set<GrantedAuthority> authorities = new HashSet<>();
+		authorities.addAll(getRole());
+		return authorities;
 	}
 	
 	public String getNomeCompleto() {
@@ -123,7 +122,14 @@ public class User implements UserDetails{
 	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
 		this.credentialsNonExpired = credentialsNonExpired;
 	}
-	
+
+	public Set<Role> getRole() {
+		return role;
+	}
+
+	public void setRole(Set<Role> role) {
+		this.role = role;
+	}
 
 	@Override
 	public String getPassword() {

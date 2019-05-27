@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifrn.projetolivraria.model.User;
+import br.edu.ifrn.projetolivraria.service.RoleService;
 import br.edu.ifrn.projetolivraria.service.UserService;
-
 
 @Controller
 @RequestMapping("/usuario")
@@ -23,11 +23,15 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	@Autowired
+	private RoleService servicerole;
+	
 	@GetMapping("/add")
 	public ModelAndView add(User usuario) {
 		
 		ModelAndView mv = new ModelAndView("/usuario/form");
 		mv.addObject("usuario", usuario);
+		mv.addObject("roles", servicerole.buscarTodos());
 		
 		return mv;
 	}

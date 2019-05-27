@@ -23,5 +23,9 @@ public class RoleService {
 	public Role save(Role role) {
 		return repository.saveAndFlush(role);
 	}
+	
+	public Role findByUsername(String nome){
+		return repository.findByUsername(nome);
+	}
 
 }

@@ -1,9 +1,5 @@
 package br.edu.ifrn.projetolivraria.job;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -35,6 +31,14 @@ public class Inicializador implements ApplicationListener<ContextRefreshedEvent>
 		
 		if(user == null){
 		
+			Role roleA = new Role();
+			roleA.setNome("ADM");
+			roleService.save(roleA);
+			
+			Role roleU = new Role();
+			roleU.setNome("USER");
+			roleService.save(roleU);
+			
 			User admin = new User();
 			admin.setNomeCompleto("robin");
 			admin.setCep("59910000");
@@ -46,45 +50,11 @@ public class Inicializador implements ApplicationListener<ContextRefreshedEvent>
 			admin.setUsername("admin");
 			admin.setPassword(new BCryptPasswordEncoder().encode("123456"));
 			
+			Role roleadm = roleService.findByUsername("ADM");
+			admin.getRole().add(roleadm);
+			
 			userService.save(admin);
-		
 		}
-	
-		/*Role roleAdm = new Role();
-		roleAdm.setNome("ADM");
-		roleService.save(roleAdm);
-
-		Role roleUse = new Role();
-		roleUse.setNome("USER");
-		roleService.save(roleUse);
-		
-		List<Role> rolesAdm = new ArrayList<>();
-		rolesAdm.add(roleAdm);
-
-		List<Role> rolesUse = new ArrayList<>();
-		rolesUse.add(roleUse);*/
-		/*
-		User admin = new User();
-		admin.setNomeCompleto("robin");
-		admin.setUsername("robinadmin");
-		admin.setPassword(new BCryptPasswordEncoder().encode("123456"));
-		
-		userService.save(admin);
-		*/
-		/*User user = new User();
-		admin.setNomeCompleto("usuario");
-		admin.setCpf("111.007.874-96");
-		admin.setDataCriacao(new Date());
-		admin.setEmail("user@gmail.com");
-		admin.setUsername("usuario");
-		admin.setPassword(new BCryptPasswordEncoder().encode("1234"));
-		//admin.setRole((Set<Role>) rolesUse);
-		
-		userService.save(user);*/
-
-
-
-
 		
 	}
 
