@@ -35,7 +35,14 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 				.antMatchers("/http://**").hasAnyAuthority("ADM", "USER")
 				.antMatchers("/https://**").hasAnyAuthority("ADM", "USER")
 				.antMatchers("/usuario/**").hasAnyAuthority("ADM")
-				.antMatchers("/layout").permitAll()
+				.antMatchers("layout").permitAll()
+				.antMatchers("/img/**").permitAll()
+				.antMatchers("/static/**").permitAll()
+				.antMatchers("/resources/**").permitAll()
+				.antMatchers("/vendor/**").permitAll()
+				.antMatchers("/css/**").permitAll()
+				.antMatchers("/scss/**").permitAll()
+				.antMatchers("/js/**").permitAll()
 				.anyRequest().authenticated()
 				.and().formLogin().permitAll()
 				.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
@@ -60,7 +67,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**", "/css/**",  "/vendor/**",  "/img/**",  "/js/**",  "/scss/**", "/h2/**");
+		web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**",  "/vendor/**",  "/img/**",  "/js/**",  "/scss/**", "/h2/**");
 		web.ignoring().antMatchers("/layout", "http::/**", "https::/**", "/http::/**", "/https::/**");
 	}
 }
