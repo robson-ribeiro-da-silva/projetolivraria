@@ -35,9 +35,6 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 				.antMatchers("/http://**").hasAnyAuthority("ADM", "USER")
 				.antMatchers("/https://**").hasAnyAuthority("ADM", "USER")
 				.antMatchers("/usuario/**").hasAnyAuthority("ADM")
-				.antMatchers("/https://data.heroku.com/datastores/**").permitAll()
-				.antMatchers("https://data.heroku.com/datastores/**").permitAll()
-				.antMatchers("/JDBC_DATASOURCE_URL/**").permitAll()
 				.antMatchers("${JDBC_DATASOURCE_URL}").permitAll()
 				.anyRequest().authenticated()
 				.and().formLogin().permitAll()
@@ -64,6 +61,6 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**", "/css/**",  "/vendor/**",  "/img/**",  "/js/**",  "/scss/**", "/h2/**");
-		web.ignoring().antMatchers("/JDBC_DATASOURCE_URL/**", "JDBC_DATASOURCE_URL/**", "${JDBC_DATASOURCE_URL}", "http::/**", "https::/**", "/http::/**", "/https::/**", "/https://data.heroku.com/datastores/**", "https://data.heroku.com/datastores/**");
+		web.ignoring().antMatchers("${JDBC_DATASOURCE_URL}", "http::/**", "https::/**", "/http::/**", "/https::/**");
 	}
 }
