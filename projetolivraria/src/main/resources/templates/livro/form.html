@@ -4,26 +4,6 @@
 <meta charset="UTF-8" />
 <title>Cadastro de Livro</title>
 
-<style>
-div.scrollmenu {
-  background-color: white;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
-
-div.scrollmenu a:hover {
-  background-color: white;
-}
-</style>
-
 </head>
 <body>
 		<div class="content-wrapper" layout:fragment="corpo">
@@ -65,11 +45,11 @@ div.scrollmenu a:hover {
 				 -->
 				 <label>Selecione o(s) Autor(es):</label>
 				 <div class="form-group">
-				 <div class="scrollmenu">
+				
 					 <div th:each="autor : ${autores}">
 						 <input type="checkbox" th:field="*{autor}" th:value="${autor.id}"><span th:text="${'  '}"></span><span th:text="${autor.nome}"></span><br>
 					 </div>
-				 </div>
+				 
 				 </div>
 				 
 				<div class="form-group row">
