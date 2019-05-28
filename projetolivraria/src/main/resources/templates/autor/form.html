@@ -45,7 +45,7 @@
 				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('cpf')}? 'has-error'">
 					    <label>CPF</label>
-					    <input type="text" class="form-control input-sm" th:field="*{cpf}" autofocus="autofocus" 
+					    <input type="text" class="form-control input-sm" th:field="*{cpf}" autofocus="autofocus" onkeydown="javascript: fMasc( this, mCPF );"
 							placeholder="Ex.: 000.000.000-00" maxlength="14"/>
 					</div>
 				</div>

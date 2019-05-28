@@ -56,6 +56,28 @@ public class Inicializador implements ApplicationListener<ContextRefreshedEvent>
 			userService.save(admin);
 		}
 		
+		String usercli = "cliente";
+		User userclie = userService.findByUsername(usercli);
+		
+		if(userclie == null){
+			
+			User cliente = new User();
+			cliente.setNomeCompleto("ifrn");
+			cliente.setCep("59900000");
+			cliente.setUf("RN");
+			cliente.setCidade("Pau dos Ferros");
+			cliente.setBairro("Centro");
+			cliente.setRua("Br 404");
+			cliente.setEmail("cliente@gmail.com");
+			cliente.setUsername("cliente");
+			cliente.setPassword(new BCryptPasswordEncoder().encode("1234567"));
+			
+			Role rolecli = roleService.findByUsername("USER");
+			cliente.getRole().add(rolecli);
+			
+			userService.save(cliente);
+		}
+		
 	}
 
 }
