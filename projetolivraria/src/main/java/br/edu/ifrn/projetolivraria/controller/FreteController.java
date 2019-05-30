@@ -36,7 +36,7 @@ public class FreteController {
 		Double valor = 5.0;
 		frete.setValor(valor);
 		
-		ModelAndView mv = new ModelAndView("/frete/form");
+		ModelAndView mv = new ModelAndView("frete/form");
 		mv.addObject("frete", frete);
 		
 		return mv;
