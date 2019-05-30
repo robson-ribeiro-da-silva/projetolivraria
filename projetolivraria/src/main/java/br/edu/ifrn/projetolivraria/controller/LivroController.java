@@ -37,7 +37,7 @@ public class LivroController {
 	@GetMapping("/add")
 	public ModelAndView add(Livro livro) {
 		
-		ModelAndView mv = new ModelAndView("/livro/form");
+		ModelAndView mv = new ModelAndView("livro/form");
 		mv.addObject("autores", serviceautor.findAll());
 		mv.addObject("categorias", servicecategoria.listaAll());
 		mv.addObject("editoras", serviceeditora.listaAll());

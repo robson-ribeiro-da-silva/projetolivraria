@@ -53,7 +53,7 @@ public class PedidoController {
 	@GetMapping("/add")
 	public ModelAndView add(Pedido pedido) {
 		
-		ModelAndView mv = new ModelAndView("/pedido/form");
+		ModelAndView mv = new ModelAndView("pedido/form");
 		mv.addObject("pedido", pedido);
 		
 		return mv;
@@ -89,7 +89,7 @@ public class PedidoController {
 		
 		
 		
-		ModelAndView mv = new ModelAndView("/frete/form");
+		ModelAndView mv = new ModelAndView("frete/form");
 		mv.addObject("pedido", pedido);
 		mv.addObject("frete", frete);
 		

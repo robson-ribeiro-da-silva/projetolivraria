@@ -27,7 +27,7 @@ public class AutorController {
 	@GetMapping("/add")
 	public ModelAndView add(Autor autor) {
 		
-		ModelAndView mv = new ModelAndView("/autor/form");
+		ModelAndView mv = new ModelAndView("autor/form");
 		mv.addObject("autor", autor);
 		
 		return mv;

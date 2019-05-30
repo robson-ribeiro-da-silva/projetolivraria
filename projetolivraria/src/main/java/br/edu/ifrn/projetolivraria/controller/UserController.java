@@ -29,7 +29,7 @@ public class UserController {
 	@GetMapping("/add")
 	public ModelAndView add(User usuario) {
 		
-		ModelAndView mv = new ModelAndView("/usuario/form");
+		ModelAndView mv = new ModelAndView("usuario/form");
 		mv.addObject("usuario", usuario);
 		mv.addObject("roles", servicerole.buscarTodos());
 		

@@ -43,7 +43,7 @@ public class ItemPedidoController {
 	@GetMapping("/add")
 	public ModelAndView add(ItemPedido itemPedido) {
 		
-		ModelAndView mv = new ModelAndView("/itemPedido/form");
+		ModelAndView mv = new ModelAndView("itemPedido/form");
 		mv.addObject("livros", serviceLivro.findAll());
 		mv.addObject("itemPedido", itemPedido);
 		
