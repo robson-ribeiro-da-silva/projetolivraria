@@ -5,6 +5,16 @@ public class PrecoPrazo {
 	private String preco;
 	private String prazo;
 	
+	
+	public PrecoPrazo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public PrecoPrazo(String preco, String prazo) {
+		super();
+		this.preco = preco;
+		this.prazo = prazo;
+	}
 	public String getPreco() {
 		return preco;
 	}

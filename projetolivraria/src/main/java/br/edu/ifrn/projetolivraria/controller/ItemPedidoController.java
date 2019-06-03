@@ -1,5 +1,6 @@
 package br.edu.ifrn.projetolivraria.controller;
 
+import java.awt.PageAttributes.MediaType;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,6 +9,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,30 +79,40 @@ public class ItemPedidoController {
 		
 		String peso = Double.toString(pesolivros);
 		
-		
+		/*
 		String nCdEmpresa = "";//teclado.nextLine();
 		String sDsSenha = "";//teclado.nextLine();
 		String nCdServico = "41106";//teclado.nextLine(); //PAC 41106 | SEDEX 40010
 		String sCepOrigem = "59910-000"; //teclado.nextLine(); //"01310909";
-		String sCepDestino = cep;//teclado.nextLine(); //"59856000";
-		String nVlPeso =  peso;//teclado.nextLine(); //"5,5";
+		String sCepDestino = "59980000";//teclado.nextLine(); //"59856000";
+		//String nVlPeso =  peso;//teclado.nextLine(); //"5,5";
 		int nCdFormato = 1;//teclado.nextInt(); //1; //1 caixa/pacote | 2 rolo/prisma | 3 envelope
-		BigDecimal nVlComprimento = new BigDecimal(50.0); // teclado.nextBigDecimal(); //new BigDecimal(16.0);
-		BigDecimal nVlAltura = new BigDecimal(50.0);// teclado.nextBigDecimal(); //new BigDecimal(20.0);
-		BigDecimal nVlLargura = new BigDecimal(50.0); //teclado.nextBigDecimal(); //new BigDecimal(20.0);
+		//BigDecimal nVlComprimento = new BigDecimal(50.0); // teclado.nextBigDecimal(); //new BigDecimal(16.0);
+		//BigDecimal nVlAltura = new BigDecimal(50.0);// teclado.nextBigDecimal(); //new BigDecimal(20.0);
+		//BigDecimal nVlLargura = new BigDecimal(50.0); //teclado.nextBigDecimal(); //new BigDecimal(20.0);
 		BigDecimal nVlDiametro = new BigDecimal(50.0);// teclado.nextBigDecimal(); //new BigDecimal(50.0);
 		String sCdMaoPropria = "S"; //teclado.nextLine(); //"S";
-		BigDecimal nVlValorDeclarado = new BigDecimal(valor); //teclado.nextBigDecimal(); //new BigDecimal(0);
+		//BigDecimal nVlValorDeclarado = new BigDecimal(valor); //teclado.nextBigDecimal(); //new BigDecimal(0);
 		String sCdAvisoRecebimento = "S";// teclado.nextLine(); //"S";
 	
+		
+		String nVlPeso =  "20,0"; //peso;
+		String nVlComprimento = "50,0";
+		String nVlAltura = "50,0";
+		String nVlLargura = "50,0";
+		Double nVlValorDeclarado = valor; //teclado.nextBigDecimal(); //new BigDecimal(0);
+		
 		RestTemplate template2 = new RestTemplate();
 		
-		PrecoPrazo precoprazo = template2.getForObject("http://localhost:8080/ServiceCorreio/servico/"+nCdServico+"/"+sCepOrigem+"/"+sCepDestino+"/"+nVlPeso+"/"+nCdFormato+"/"+nVlComprimento+"/"+nVlAltura+"/"+nVlLargura+"/"+nVlDiametro+"/"+sCdMaoPropria+"/"+nVlValorDeclarado+"/"+sCdAvisoRecebimento, PrecoPrazo.class);
 		
+		//PrecoPrazo precoprazo = template2.getForObject("http://localhost:8080/ServiceCorreio/servico/"+nCdServico+"/"+sCepOrigem+"/"+sCepDestino+"/"+nVlPeso+"/"+nCdFormato+"/"+nVlComprimento+"/"+nVlAltura+"/"+nVlLargura+"/"+nVlDiametro+"/"+sCdMaoPropria+"/"+nVlValorDeclarado+"/"+sCdAvisoRecebimento, PrecoPrazo.class);
 		
+		//PrecoPrazo precoprazo = template2.getForObject("https://apiservicocorreios.herokuapp.com/"+sCepDestino+"/"+nVlPeso+"/"+nVlComprimento+"/"+nVlAltura+"/"+nVlLargura+"/"+nVlValorDeclarado, PrecoPrazo.class);
+		PrecoPrazo precoprazo = template2.getForObject("http://localhost:9000/59900000/20,0/50,0/50,0/50,0/500.0", PrecoPrazo.class);
+		//https://apiservicocorreios.herokuapp.com/59900000/20,0/50,0/50,0/50,0/500.0
 		//System.out.println("Dias: " +precoprazo.getPrazo()+ "\nValor: " +precoprazo.getPreco());
 
-		
+		*/
 		
 		RestTemplate template = new RestTemplate();
 		
@@ -113,9 +126,9 @@ public class ItemPedidoController {
 			frete.setRua(endereco.getLogradouro());
 		}
 		
-		System.out.println("Dias: " +precoprazo.getPrazo()+ "\nValor: " +precoprazo.getPreco());
-		String pre = precoprazo.getPreco();
-		String dias = precoprazo.getPrazo();
+		//System.out.println("Dias: " +precoprazo.getPrazo()+ "\nValor: " +precoprazo.getPreco());
+		String pre = itemPedido.getPreco();
+		String dias = itemPedido.getPrazo();
 		
 		pre = pre.replaceAll( "," , "." );
 		
@@ -123,15 +136,15 @@ public class ItemPedidoController {
 		double preco = Double.parseDouble(pre);
 		int prazodias = Integer.parseInt(dias);
 		
-		System.out.println("Dias: " +prazodias+ "\nValor: " +preco);
+		//System.out.println("Dias: " +prazodias+ "\nValor: " +preco);
 		
-		if(precoprazo != null){
-			frete.setCepOrigem(sCepOrigem);
+		//if(precoprazo != null){
+			frete.setCepOrigem("59910000");
 			frete.setPeso(pesolivros);
 			frete.setValor(preco);
 			frete.setTotDias(prazodias);
 			
-		}
+		//}
 		
 		
 		

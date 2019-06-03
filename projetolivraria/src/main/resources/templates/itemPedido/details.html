@@ -20,14 +20,14 @@
 									
 											<div th:each="livro : ${itemPedido.livro}" >
 											
-												<div class="form-group col-md-2">
+												<div class="form-group col-md-4">
 												
 														<div>
 															<img height="150px" width="130px" th:src="@{/img/book.png}"><br>
 														</div>	
 																			
 												</div>	
-												<div class="form-group col-md-10">
+												<div class="form-group col-md-8">
 												<label>Titulo do Livro:</label>
 												<div th:text="${livro.titulo}" ></div>
 											
