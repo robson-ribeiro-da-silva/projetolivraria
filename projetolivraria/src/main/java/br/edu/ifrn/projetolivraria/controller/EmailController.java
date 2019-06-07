@@ -42,7 +42,7 @@ public class EmailController {
         message.setText("Testando");
         message.setSubject("Teste");
         message.setTo("robsonrds72@gmail.com");
-        message.setFrom("robsonrds72@gmail.com");
+        message.setFrom("admlivrariaads@gmail.com");
        
         //mailSender.send(message);
        
