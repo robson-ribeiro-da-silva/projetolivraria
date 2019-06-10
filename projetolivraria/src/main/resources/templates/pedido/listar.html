@@ -18,14 +18,17 @@
 								<tr>
 									<th>ID</th>
 									<th>Data Pedido</th>
+									<th>Status</th>
 									<th>Valor Total</th>	
 									<th>Detalhes</th>									
 								</tr>
 							</thead>
+							
 							<tbody>
 								<tr th:each="pedido : ${pedidos}">
 									<td th:text="${pedido.id}"></td>
 									<td th:text="${pedido.data}"></td>
+									<td th:text="${pedido.statuspedido}"></td>
 									<td th:text="${pedido.valorTotal}"></td>	
 									<td>
 										<div class="btn-group pull-right">

@@ -1,11 +1,13 @@
 package br.edu.ifrn.projetolivraria.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -20,8 +22,10 @@ import br.edu.ifrn.projetolivraria.model.Frete;
 import br.edu.ifrn.projetolivraria.model.ItemPedido;
 import br.edu.ifrn.projetolivraria.model.Livro;
 import br.edu.ifrn.projetolivraria.model.Pedido;
+import br.edu.ifrn.projetolivraria.model.StatusPedido;
 import br.edu.ifrn.projetolivraria.model.User;
 import br.edu.ifrn.projetolivraria.model.Usuario;
+import br.edu.ifrn.projetolivraria.service.EmailService;
 import br.edu.ifrn.projetolivraria.service.FreteService;
 import br.edu.ifrn.projetolivraria.service.ItemPedidoService;
 import br.edu.ifrn.projetolivraria.service.LivroService;
@@ -50,6 +54,9 @@ public class PedidoController {
 	@Autowired
 	private LivroService servicelivro;
 	
+	@Autowired
+	private EmailService serviceemail;
+	
 	@GetMapping("/add")
 	public ModelAndView add(Pedido pedido) {
 		
@@ -66,6 +73,9 @@ public class PedidoController {
 		
 		User usuario = serviceusuario.findByUsername(user);
 		
+		serviceemail.sendMail("Compra Realizada com Sucesso! você acaba de adquirir um produto da Livraria",
+				"Livraria DSC - Compra Realizada", usuario.getEmail());
+		
 		Pedido pedido = new Pedido();
 		
 		service.save(pedido);
@@ -79,6 +89,8 @@ public class PedidoController {
 		
 		pedido.setValorTotal(ipedido.getValorTotal());
 		pedido.setData(new Date());
+		pedido.setStatuspedido(StatusPedido.ANDAMENTO);
+		
 		
 		pedido.setUsuario(usuario);
 		
@@ -134,6 +146,26 @@ public class PedidoController {
 			System.out.println(" AQUIIIIIIII ----->>>>> "+ l.getTitulo());
 		}*/
 		
+		//verificar status
+		/*
+		Date datatu = new Date();
+		
+		String formato = "dd/MM/yyyy";
+		SimpleDateFormat dataFormatada = new SimpleDateFormat(formato); 
+		
+		String dataatual = dataFormatada.format(datatu);
+		
+		for(Pedido p : pedidos){
+			if(p.getFrete().getDataEntregaCliente() == dataatual){				
+				p.setStatuspedido(StatusPedido.ENTREGUE);
+				service.save(p);
+			}
+		}
+		
+		List<Pedido> novalistapedidos = service.findByUsuario(usuario);
+		
+		*/
+		
 		ModelAndView mv = new ModelAndView("pedido/listar");
 		mv.addObject("pedidos", pedidos);
 		//mv.addObject("itempedidos", itempedidos);
@@ -180,5 +212,29 @@ public class PedidoController {
 		
 		return mv;
 	}
+	
+	//@GetMapping("/verificarStatusPedido")
+	/*@Scheduled(cron = "")
+	public void verificarStatusPedido(){
+		
+		List<Pedido> pedidos = service.findAll();
+		
+		Date datatu = new Date();
+		
+		String formato = "dd/MM/yyyy";
+		SimpleDateFormat dataFormatada = new SimpleDateFormat(formato); 
+		
+		String dataatual = dataFormatada.format(datatu);
+		
+		for(Pedido p : pedidos){
+			if(p.getFrete().getDataEntregaCliente() == dataatual){				
+				p.setStatuspedido(StatusPedido.ENTREGUE);
+				service.save(p);
+			}
+		}
+		
+		System.out.println("verificado");
+		
+	}*/
 
 }

@@ -46,7 +46,7 @@ public class Inicializador implements ApplicationListener<ContextRefreshedEvent>
 			admin.setCidade("Doutor Severiano");
 			admin.setBairro("Zona Rural");
 			admin.setRua("Merejo");
-			admin.setEmail("robin@gmail.com");
+			admin.setEmail("admlivrariaads@gmail.com");
 			admin.setUsername("admin");
 			admin.setPassword(new BCryptPasswordEncoder().encode("123456"));
 			
@@ -68,7 +68,7 @@ public class Inicializador implements ApplicationListener<ContextRefreshedEvent>
 			cliente.setCidade("Pau dos Ferros");
 			cliente.setBairro("Centro");
 			cliente.setRua("Br 404");
-			cliente.setEmail("cliente@gmail.com");
+			cliente.setEmail("robsonrds72@gmail.com");
 			cliente.setUsername("cliente");
 			cliente.setPassword(new BCryptPasswordEncoder().encode("1234567"));
 			

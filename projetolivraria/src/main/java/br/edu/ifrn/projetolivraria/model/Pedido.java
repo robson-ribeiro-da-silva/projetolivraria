@@ -15,6 +15,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Pedido implements Serializable{
+	
+	
+	public Pedido() {
+		super();		
+		this.statuspedido = StatusPedido.INICIAL;
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +32,8 @@ public class Pedido implements Serializable{
 	private double valorTotal;
 	
 	private Date data;
+	
+	private StatusPedido statuspedido;
 	
 	@OneToMany(mappedBy="pedido")
 	public List<ItemPedido> itemPedido;
@@ -76,7 +84,13 @@ public class Pedido implements Serializable{
 		this.frete = frete;
 	}
 
-	
+	public StatusPedido getStatuspedido() {
+		return statuspedido;
+	}
+
+	public void setStatuspedido(StatusPedido statuspedido) {
+		this.statuspedido = statuspedido;
+	}
 
 	public User getUsuario() {
 		return usuario;

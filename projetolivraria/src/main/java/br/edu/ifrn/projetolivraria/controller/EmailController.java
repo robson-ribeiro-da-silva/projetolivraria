@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifrn.projetolivraria.service.AutorService;
+import br.edu.ifrn.projetolivraria.service.EmailService;
 
 @Controller
 @RequestMapping("/email")
@@ -24,10 +25,15 @@ public class EmailController {
 	@Autowired
 	private AutorService service;
 
+	@Autowired
+	private EmailService serviceemail;
 	
 	@GetMapping("/enviar")
 	public ModelAndView sendMail() {
 		
+		serviceemail.sendMail("testenaod", "teste", "robsonrds72@gmail.com");
+		
+		/*
 		SimpleMailMessage message = new SimpleMailMessage();
         
 		message.setText("Testando");
@@ -43,7 +49,7 @@ public class EmailController {
         	System.out.println("O email não foi enviado");
 			e.printStackTrace();
 		}
-		
+		*/
 		/*try{
 			MimeMessage mail = mailSender.createMimeMessage();
 	

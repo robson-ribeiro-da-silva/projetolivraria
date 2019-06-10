@@ -129,7 +129,7 @@ function pesquisacep(valor) {
 				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('nomeCompleto')}? 'has-error'">
 					    <label>Nome</label>
-					    <input type="text" class="form-control input-sm" th:field="*{nomeCompleto}" autofocus="autofocus" placeholder="Informe o Nome" maxlength="150"/>
+					    <input type="text" class="form-control input-sm" th:field="*{nomeCompleto}" autofocus="autofocus" maxlength="150"/>
 					</div>
 				</div>
 				
@@ -164,28 +164,28 @@ function pesquisacep(valor) {
 				<div class="form-group row">                                                          
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('rua')}? 'has-error'">
 					    <label>Rua</label>
-					    <input type="text" class="form-control input-sm" th:field="*{rua}" autofocus="autofocus" placeholder="Informe A Rua" maxlength="150"/>
+					    <input type="text" class="form-control input-sm" th:field="*{rua}" autofocus="autofocus" maxlength="150"/>
 					</div>
 				</div>
 				
 				<div class="form-group row">
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
 						<label>Email</label> 
-						<input type="text" class="form-control input-sm" th:field="*{email}" maxlength="150" placeholder="Informe o Email"/>
+						<input type="email" class="form-control input-sm" th:field="*{email}" maxlength="150"/>
 					</div>
 				</div>
 				
 				<div class="form-group row">
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('username')}? 'has-error'">
 						<label>Crie um Username</label> 
-						<input type="text" class="form-control input-sm" th:field="*{username}" maxlength="150" placeholder="Informe uma Senha"/>
+						<input type="text" class="form-control input-sm" th:field="*{username}" maxlength="150"/>
 					</div>
 				</div>
 				
 				<div class="form-group row">
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
 						<label>Crie uma Senha</label> 
-						<input type="password" class="form-control input-sm" th:field="*{password}" maxlength="150" placeholder="Informe uma Senha"/>
+						<input type="password" class="form-control input-sm" th:field="*{password}" maxlength="150"/>
 					</div>
 				</div>
 				

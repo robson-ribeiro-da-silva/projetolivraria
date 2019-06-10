@@ -7,26 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class EmailService {
 	
 	@Autowired 
 	private JavaMailSender mailSender;
 	
 	
-	public void sendMail() throws MessagingException{
+	public void sendMail(String texto, String assunto, String email){
         
 		SimpleMailMessage message = new SimpleMailMessage();
-        message.setText("Testando");
-        message.setSubject("Teste");
-        message.setTo("admlivrariaads@gmail.com");
+		
+        message.setText(texto);
+        message.setSubject(assunto);
+        message.setTo(email);
         message.setFrom("admlivrariaads@gmail.com");
-       
-        
-       
-       
-        System.out.println(" service");
         
         try {
             mailSender.send(message);
