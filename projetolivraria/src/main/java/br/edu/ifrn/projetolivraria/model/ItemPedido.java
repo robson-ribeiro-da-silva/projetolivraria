@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,6 +31,7 @@ public class ItemPedido implements Serializable{
 	
 	private double valorTotal;
 	
+	@NotBlank(message = "Cep é uma informação obrigatória.")
 	private String  cep;
 	
 	private String preco;

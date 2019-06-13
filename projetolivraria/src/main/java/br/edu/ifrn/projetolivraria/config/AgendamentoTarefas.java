@@ -73,10 +73,11 @@ public class AgendamentoTarefas {
 		
 		for(User u : usuarios){
 			String datausuario = u.getNascimento();
-			String[] datausuarioformatada = datausuario.split("/");
-			
-			if(dataatualformatada[0] == datausuarioformatada[0] && dataatualformatada[1] == datausuarioformatada[1]){
-				serviceemail.sendMail("A Livraria DSC deseja-lhe os Parabéns! Feliz Aniversário", "Feliz Aniversário", u.getEmail());
+			String[] datausuarioformatada = datausuario.split("-");
+		
+			if(dataatualformatada[0].equals(datausuarioformatada[2]) && dataatualformatada[1].equals(datausuarioformatada[1])){
+				serviceemail.sendMail("A Livraria DSC deseja-lhe os Parabéns! "+u.getNomeCompleto() +" Feliz Aniversário", "Feliz Aniversário", u.getEmail());
+				//System.out.println("Email Enviado!");
 			}			
 		}		
 	}

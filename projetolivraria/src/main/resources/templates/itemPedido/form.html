@@ -29,7 +29,7 @@ function pesquisacep(valor) {
 
         //Valida o formato do CEP.
         if(validacep.test(cep)) {
-
+        	 alert( "Aguarde um Momento! Estamos Trabalhando Nisso" );
             //Preenche os campos com "..." enquanto consulta webservice.
             document.getElementById('preco').value="...";
             document.getElementById('prazo').value="...";
@@ -38,7 +38,7 @@ function pesquisacep(valor) {
 		    	
 		    })
 		    .done(function(dataobj) {
-    		    alert( "second success" );
+    		    alert( "Preço do Frete Calculado" );
     		    document.getElementById('preco').value=(dataobj.preco);
                 document.getElementById('prazo').value=(dataobj.prazo);
                 
@@ -184,11 +184,14 @@ function pesquisacep(valor) {
 					</select>
 				</div>  --> 
 				
-				 <div class="form-group row">                                                          
+				<label>Informe o Cep para calcular preço e prazo do Frete</label>    
+				 <div class="form-group row">               
+				 	                                       
 					<div class="col-md-4" th:classappend="${#fields.hasErrors('cep')}? 'has-error'">
-					    <label>Informe o Cep para calcular preço e prazo do Frete</label>
+					    
 					    <input type="text" class="form-control input-sm" th:field="*{cep}" onkeydown="javascript: fMasc( this, mCEP );" maxlength="9" onblur="pesquisacep(this.value);"/>
 					</div>
+					<input id="btn" type="button" value="Calcular"/>
 				</div>  
 				
 				
