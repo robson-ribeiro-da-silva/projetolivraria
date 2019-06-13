@@ -79,7 +79,8 @@ public class User implements UserDetails{
 	@NotBlank(message = "Bairro é uma informação obrigatória.")
 	private String bairro;
 	
-	
+	@NotBlank(message = "Data de Nascimento o Preencimento obrigatório")
+	private String nascimento;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
@@ -237,6 +238,14 @@ public class User implements UserDetails{
 
 	public void setPedido(List<Pedido> pedido) {
 		this.pedido = pedido;
+	}
+
+	public String getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(String nascimento) {
+		this.nascimento = nascimento;
 	}
 	
 	
