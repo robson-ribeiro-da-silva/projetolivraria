@@ -42,6 +42,24 @@ public class EmailService {
         }
     }
 	
+	public void sendMailEnviar(String texto, String assunto, String emailUsuario){
+        
+		SimpleMailMessage message = new SimpleMailMessage();
+		
+        message.setText(texto);
+        message.setSubject(assunto);
+        message.setTo("admlivrariaads@gmail.com");
+        message.setFrom(emailUsuario);
+        
+        try {
+            mailSender.send(message);
+            System.out.println("Email enviado com sucesso!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erro ao enviar email.");
+        }
+    }
+	
 	public Email save(Email email) {
 		return repository.saveAndFlush(email);
 	}
