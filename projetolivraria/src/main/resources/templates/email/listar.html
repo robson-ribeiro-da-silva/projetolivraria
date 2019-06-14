@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+<title>Listagem de Email</title>
+</head>
+<body>
+
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<th:block th:if="${success != null}">
+               		<div class="alert alert-success">
+               			<span th:text="${success}"></span>
+               		</div>
+               	</th:block>
+				<div class="panel-heading">
+					<strong>Email</strong>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-sm table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>Titulo</th>
+									<th>Conteudo</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								
+								<td th:text="${email.titulo}"></td>
+								<td th:text="${email.texto}"></td>
+									
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="panel-footer">
+					<a class="btn btn-sm btn-success" th:href="@{/email/enviar}" >Enviar Novo</a>
+				</div>
+
+			</div>
+		</div>
+	
+</body>
+</html>

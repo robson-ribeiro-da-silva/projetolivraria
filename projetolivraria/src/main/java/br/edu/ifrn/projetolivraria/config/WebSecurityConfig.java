@@ -29,7 +29,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 				.antMatchers("/editora/**").hasAnyAuthority("ADM")
 				.antMatchers("/livro/details/**").hasAnyAuthority("ADM", "USER")
 				.antMatchers("/livro/**").hasAnyAuthority("ADM")
-				.antMatchers("/email/**").hasAnyAuthority("ADM")
+				.antMatchers("/email/**").hasAnyAuthority("ADM", "USER")
 				.antMatchers("/usuario/**").hasAnyAuthority("ADM")
 				.antMatchers("/frete/**").hasAnyAuthority("ADM", "USER")
 				.antMatchers("/pedido/**").hasAnyAuthority("ADM", "USER")

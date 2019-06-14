@@ -34,7 +34,7 @@ public class AutorController {
 	}
 	
 	@PostMapping("/save")
-	public ModelAndView save(@Valid Autor autor, BindingResult result, RedirectAttributes m) {
+	public ModelAndView save(@Valid Autor autor, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			return add(autor);
