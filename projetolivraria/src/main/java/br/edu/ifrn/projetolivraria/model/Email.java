@@ -21,10 +21,8 @@ public class Email implements Serializable {
 
 	private String usuario;
 	
-	@NotBlank(message = "Titulo é uma informação obrigatória.")
 	private String titulo;
 	
-	@NotBlank(message = "Conteudo é uma informação obrigatória.")
 	private String texto;
 	
 	public String getUsuario() {
