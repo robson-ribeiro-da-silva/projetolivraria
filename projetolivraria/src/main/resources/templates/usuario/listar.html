@@ -23,7 +23,7 @@
 									<th>Cidade</th>
 									<th>Rua</th>
 									<th>Username</th>
-									<th>Senha</th>
+									<th>Data Nas</th>
 									<th>Ações</th>
 								</tr>
 							</thead>
@@ -36,7 +36,7 @@
 									<td th:text="${usuario.cidade}"></td>
 									<td th:text="${usuario.rua}"></td>
 									<td th:text="${usuario.username}"></td>
-									<td th:text="${usuario.password}"></td>
+									<td th:text="${usuario.nascimento}"></td>
 									<td>
 										<div class="btn-group pull-right">
 									   		<a class="btn btn-sm btn-primary" th:href="@{/usuario/edit/{id}(id=${usuario.id})}" >Editar</a>
