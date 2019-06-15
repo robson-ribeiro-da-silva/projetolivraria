@@ -62,7 +62,7 @@ public class EmailController {
 		
 		serviceemail.save(email);
 		
-		serviceemail.sendMailEnviar(email.getTexto(), email.getTitulo(), email.getUsuario());
+		serviceemail.sendMailEnviar(email.getTexto(), "Email de De: "+ email.getUsuario()+" Titulo: "+email.getTitulo());
 		
 		
 		

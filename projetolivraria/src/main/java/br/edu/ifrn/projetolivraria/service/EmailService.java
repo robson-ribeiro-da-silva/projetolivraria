@@ -42,14 +42,14 @@ public class EmailService {
         }
     }
 	
-	public void sendMailEnviar(String texto, String assunto, String emailUsuario){
+	public void sendMailEnviar(String texto, String assunto){
         
 		SimpleMailMessage message = new SimpleMailMessage();
 		
         message.setText(texto);
         message.setSubject(assunto);
         message.setTo("admlivrariaads@gmail.com");
-        message.setFrom(emailUsuario);
+        message.setFrom("admlivrariaads@gmail.com");
         
         try {
             mailSender.send(message);
