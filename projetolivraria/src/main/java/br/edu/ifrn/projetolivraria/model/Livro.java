@@ -63,6 +63,9 @@ public class Livro implements Serializable {
 	public List<Autor> autor;
 	
 	@ManyToMany(mappedBy="livro")
+	public List<ListaDesejos> listadesejo;
+	
+	@ManyToMany(mappedBy="livro")
 	public List<ItemPedido> itemPedido;
 
 	public List<ItemPedido> getItemPedido() {
@@ -151,6 +154,14 @@ public class Livro implements Serializable {
 
 	public void setAutor(List<Autor> autor) {
 		this.autor = autor;
+	}
+
+	public List<ListaDesejos> getListadesejo() {
+		return listadesejo;
+	}
+
+	public void setListadesejo(List<ListaDesejos> listadesejo) {
+		this.listadesejo = listadesejo;
 	}
 
 	public static long getSerialversionuid() {

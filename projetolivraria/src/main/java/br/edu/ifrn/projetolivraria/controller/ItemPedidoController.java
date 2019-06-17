@@ -11,6 +11,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +25,15 @@ import org.springframework.web.servlet.ModelAndView;
 import br.edu.ifrn.projetolivraria.model.Endereco;
 import br.edu.ifrn.projetolivraria.model.Frete;
 import br.edu.ifrn.projetolivraria.model.ItemPedido;
+import br.edu.ifrn.projetolivraria.model.ListaDesejos;
 import br.edu.ifrn.projetolivraria.model.Livro;
 import br.edu.ifrn.projetolivraria.model.PrecoPrazo;
+import br.edu.ifrn.projetolivraria.model.User;
 import br.edu.ifrn.projetolivraria.service.FreteService;
 import br.edu.ifrn.projetolivraria.service.ItemPedidoService;
+import br.edu.ifrn.projetolivraria.service.ListaDesejosService;
 import br.edu.ifrn.projetolivraria.service.LivroService;
+import br.edu.ifrn.projetolivraria.service.UserService;
 
 
 @Controller
@@ -42,6 +48,12 @@ public class ItemPedidoController {
 	
 	@Autowired
 	private FreteService servicefrete;
+	
+	@Autowired
+	private UserService serviceusuario;
+	
+	@Autowired
+	private ListaDesejosService servicelistadesejos;
 	
 	@GetMapping("/add")
 	public ModelAndView add(ItemPedido itemPedido) {
@@ -201,6 +213,21 @@ public class ItemPedidoController {
 		service.delete(id);
 		
 		return findAll();
+	}
+	
+	@GetMapping("/listadesejos")
+	public ModelAndView listadesejos(@AuthenticationPrincipal UserDetails userDetails) {
+		
+		String user = userDetails.getUsername();
+		
+		User usuario = serviceusuario.findByUsername(user);
+		
+		List<ListaDesejos> listadesejos = servicelistadesejos.findByUsuario(usuario.getId());
+		
+		ModelAndView mv = new ModelAndView("itemPedido/listadesejos");
+		mv.addObject("listadesejos", listadesejos);
+		
+		return mv;
 	}
 
 }

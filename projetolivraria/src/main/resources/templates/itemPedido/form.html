@@ -7,6 +7,44 @@
 
 <script type="text/javascript" >
 
+function funcao1(valor) {
+	
+	//alert( "Livro "+valor );
+	
+	var rootURLApi = "http://localhost:8080/api/listadesejos/save/"+valor;
+   
+    if (valor != "") {
+    	
+    	$.post(rootURLApi, "", function( data ) {
+    	   alert("O livro foi adicionado a sua lista de desejos: "+data.titulo);
+    	});
+           
+//     	$.ajax({
+//     		  type: "POST",
+//     		  url: rootURLApi,
+//     		  data: data,
+//     		  success: func(data){ 
+//     		    console.log('dados inseridos com sucesso');
+//     		  },
+//     		});
+        /*$.getJSON( rootURLApi + '/save/'+ valor, function( data ) {  
+
+     	 })
+     	 .done(function(data) {
+    		    alert( "Livro "+data.titulo+" Adicionado a sua Lista de Desejos!" );
+    		  
+               
+    		  })
+    		  .fail(function(data) {
+    			  alert( "ERRO - Nenhum Livro Adicionado a Lista de Desejos" ); 		    
+        		  
+    		  });*/
+       
+    }else {
+    	alert( "Nenhum Livro Adicionado a Lista de Desejos" );
+    }
+};
+
 function limpa_formulário_cep() {
         //Limpa valores do formulário de cep.
         document.getElementById('preco').value=("");
@@ -149,8 +187,13 @@ function pesquisacep(valor) {
 								<label>Titulo:</label> <div th:text="${livro.titulo}" ></div>
 								<label>Sinopse:</label> <div th:text="${livro.sinopse}" ></div>		
 								<label>Preço:</label> <div th:text="${livro.preco}" ></div>
-								
+							
+								<!-- <input type="hidden" th:field="*{livro}" th:value="${livro.id}"/> -->
 								<input type="checkbox" th:field="*{livro}" th:value="${livro.id}"><span>Add ao Carrinho</span><br>
+								
+								<div>
+								<input type="button" th:field="*{livro}" th:value="${livro.id}" onclick="funcao1(this.value)">
+								Click para Add a lista de desejos</div>
 								</div>
 								<div class="form-group col-md-4">
 									<label>Ano:</label> <div th:text="${livro.ano}" ></div>									

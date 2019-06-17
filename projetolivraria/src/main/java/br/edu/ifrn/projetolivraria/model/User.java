@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
@@ -98,6 +99,9 @@ public class User implements UserDetails{
 
 	@OneToMany(mappedBy="usuario")
 	private List<Pedido> pedido;
+	
+	@OneToMany(mappedBy="usuario")
+	private List<ListaDesejos> listadesejo;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -247,6 +251,16 @@ public class User implements UserDetails{
 	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
 	}
+
+	public List<ListaDesejos> getListadesejo() {
+		return listadesejo;
+	}
+
+	public void setListadesejo(List<ListaDesejos> listadesejo) {
+		this.listadesejo = listadesejo;
+	}
+
+	
 	
 	
 	
