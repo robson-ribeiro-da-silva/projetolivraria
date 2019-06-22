@@ -48,7 +48,8 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 				.antMatchers("/js/**").permitAll()
 				.anyRequest().authenticated()
 				.and().formLogin().permitAll()
-				.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+				.and().logout().permitAll()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 		
 		http.csrf().disable();
         http.headers().frameOptions().disable();
@@ -71,6 +72,6 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**",  "/vendor/**",  "/img/**",  "/js/**",  "/scss/**", "/h2/**");
-		web.ignoring().antMatchers("/layout", "http::/**", "https::/**", "/http::/**", "/https::/**");
+		web.ignoring().antMatchers("/layout", "http::/**", "https::/**");
 	}
 }

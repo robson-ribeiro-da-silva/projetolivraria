@@ -87,8 +87,6 @@ public class User implements UserDetails{
 	@ManyToMany
 	private Set<Role> role = new HashSet<Role>();
 	
-	
-
 	private boolean accountNonExpired;
 
 	private boolean accountNonLocked;

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+<title>Listagem de Pedido</title>
+</head>
+<body>
+
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			<strong>Pedidos</strong>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-sm table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>Nome Cliente</th>
+									<th>Data Pedido</th>
+									<th>Valor Total</th>	
+																	
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="pedido : ${pedidos}">
+									<td th:text="${pedido.usuario.nomeCompleto}"></td>
+									<td th:text="${pedido.data}"></td>
+									<td th:text="${pedido.valorTotal}"></td>	
+																	
+									
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+</body>
+</html>

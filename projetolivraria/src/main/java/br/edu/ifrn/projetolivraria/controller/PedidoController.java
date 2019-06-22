@@ -1,6 +1,7 @@
 package br.edu.ifrn.projetolivraria.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -212,6 +213,34 @@ public class PedidoController {
 		
 		return mv;
 	}
+	
+	@GetMapping("/listarpedidosdodia")
+	public ModelAndView findByDay() {
+		
+		List<Pedido> pedidosdodia = new ArrayList<Pedido>();
+		
+		List<Pedido> pedidos = service.findAll();
+		
+		Date data = new Date();
+		
+		String formato = "dd/MM/yyyy";
+		SimpleDateFormat dataFormatada = new SimpleDateFormat(formato); 
+		
+		String dataatual = dataFormatada.format(data);
+		
+		for(Pedido p : pedidos){
+			String dataped = dataFormatada.format(p.getData());
+			if(dataatual.equals(dataped)){
+				pedidosdodia.add(p);
+			}
+		}
+		
+		ModelAndView mv = new ModelAndView("pedido/listarpordia");
+		mv.addObject("pedidos", pedidosdodia);
+		
+		return mv;
+	}
+	
 	
 	//@GetMapping("/verificarStatusPedido")
 	/*@Scheduled(cron = "")

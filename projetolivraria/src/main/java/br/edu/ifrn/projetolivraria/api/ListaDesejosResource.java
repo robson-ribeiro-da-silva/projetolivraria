@@ -51,14 +51,12 @@ public class ListaDesejosResource {
 		
 		User usuario = serviceusuario.findByUsername(user);
 		
-		
 		ListaDesejos listadesejo = new ListaDesejos();
 		
 		listadesejo = new ListaDesejos();
 		listadesejo.setLivro(listaLivro);
 		listadesejo.setUsuario(usuario);
 		
-
 		service.save(listadesejo);
 		
 		
