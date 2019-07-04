@@ -227,16 +227,19 @@ public class PedidoController {
 		SimpleDateFormat dataFormatada = new SimpleDateFormat(formato); 
 		
 		String dataatual = dataFormatada.format(data);
+		int soma = 0;
 		
 		for(Pedido p : pedidos){
 			String dataped = dataFormatada.format(p.getData());
 			if(dataatual.equals(dataped)){
 				pedidosdodia.add(p);
+				soma += p.getValorTotal();
 			}
 		}
 		
 		ModelAndView mv = new ModelAndView("pedido/listarpordia");
 		mv.addObject("pedidos", pedidosdodia);
+		mv.addObject("soma", soma);
 		
 		return mv;
 	}

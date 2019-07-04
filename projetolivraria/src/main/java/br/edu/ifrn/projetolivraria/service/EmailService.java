@@ -31,7 +31,7 @@ public class EmailService {
         message.setText(texto);
         message.setSubject(assunto);
         message.setTo(email);
-        message.setFrom("admlivrariaads@gmail.com");
+        message.setFrom("admprojetolivrariadsc@gmail.com");
         
         try {
             mailSender.send(message);
@@ -48,8 +48,8 @@ public class EmailService {
 		
         message.setText(texto);
         message.setSubject(assunto);
-        message.setTo("admlivrariaads@gmail.com");
-        message.setFrom("admlivrariaads@gmail.com");
+        message.setTo("admprojetolivrariadsc@gmail.com");
+        message.setFrom("admprojetolivrariadsc@gmail.com");
         
         try {
             mailSender.send(message);
